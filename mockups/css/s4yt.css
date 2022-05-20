@@ -1,0 +1,41 @@
+/* Bebas Neue */
+@font-face {
+    font-family: "Bebas Neue";
+    src: url('./../assets/font/bebas_neue/BebasNeue-Regular.ttf');
+    font-weight: 400;
+}
+
+/* Night Zone */
+@font-face {
+    font-family: "NightZone";
+    src: url('./../assets/font/Night\ Zone.ttf');
+}
+  
+:root {
+    --primary-font: #895734;
+    --error-font: #1eb8a9;
+}
+
+.title {
+    font-family:'NightZone', Arial, sans-serif;
+    color: var(--primary-font);
+    font-weight: bold;
+    text-align: center;
+}
+
+.form-label {
+    font-family:'Bebas Neue', Arial, sans-serif;
+    color: var(--primary-font);
+    font-size: 0.8rem;
+    margin-bottom: 0;
+    font-weight: 700;  
+}
+
+.form-text {
+    margin: 0;
+    font-family:'Bebas Neue', Arial, sans-serif;
+    color: var(--error-font);
+    font-size: 0.7rem;
+    font-style: italic;
+    text-align: right;
+}
