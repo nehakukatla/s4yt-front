@@ -1,0 +1,56 @@
+
+:root {
+    --primary-font: #895734;
+}
+
+body {
+    background-image: url('./../assets/background.png');
+    background-size: 200%;
+    background-repeat: no-repeat;
+    font-family: 'Bebas Neue', cursive;
+    color: var(--primary-font);
+}
+
+h1 {
+    font-size: 3.3rem;
+    font-family:'NightZone', Arial, sans-serif;
+}
+    
+.btn{
+    max-width: 50%;
+    width: 110px;
+}
+.logo{
+    max-width:100%;
+    width:500px;
+}
+@media screen and (min-width: 1000px) {
+    h1 {
+        font-size: 100px;
+    }
+    body {
+        background-image: url("./../assets/see_bussinesses_back2.png");
+        background-size: 75%;
+    }
+}
+  @media screen and (max-width: 500px) {
+    body {
+      background-image: url("./../assets/background_mob.png");
+      background-size:100%;
+      background-position: bottom -20px right;
+    }
+    .line {
+        width: 35%;
+        height: 55%;
+    }
+    .col-1half{
+        width:5%;
+    }
+    h1 {
+        font-size: 38px;
+    }
+  }
+  @font-face {
+    font-family: "NightZone";
+    src: url("./../assets/font/Night\ Zone.otf") format("opentype")
+    }
