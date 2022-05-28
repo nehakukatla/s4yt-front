@@ -9,42 +9,43 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/register.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="assets/tooltip icons/fontawesome-free-6.1.1-web/css/all.css">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 </head>
 <div>
-<body >
-    <div>
-        <header class="mt-1">
-            <div class="row">
-                <div class = " col-6 col-lg-5 ps-4 d-flex justify-content-end mt-lg-3 mb-lg-3" >
-                    <img src="assets/logo S4YT.png" alt="logo" class = "logo" >
-                </div>
-                <div class = "col-1 align-items-center col-lg-7 ps-0 mt-lg-3 mt-2 " >
-                    <h1>Register</h1>   
-                </div>          
+<body>
+    <header class=" mt-1">
+        <div class="row mb-4 mb-lg-0 mb-lg-0">
+            <div class = " col-6 col-lg-5 ps-4 d-flex justify-content-end mt-lg-3 mb-lg-3 pe-2 pe-lg-0" >
+                <img src="assets/logo S4YT.png" alt="logo" class = "logo" >
             </div>
-        </header>
-        <br>
-        <form action="" class = "row ps-0 pt-3 pt-lg-0 mt-lg-0  ">
-            <div class = "col-8 col-lg-8 offset-2 offset-lg-2  pt-lg-4 mt-lg-2 pe-lg-4 ps-lg-5 pe-4" >
+            <div class = "col-1 align-items-center col-lg-7 ps-0 mt-lg-3 mt-2 me-3 me-lg-0" >
+                <h1>Register</h1>   
+            </div>          
+        </div>
+    </header>
+        <form action="" class = "row ps-0 pt-3 pt-lg-0 mt-lg-0 mb-5 mb-lg-0 mt-3 mt-lg-0">
+            <div class = "col-8 col-lg-8 offset-2 offset-lg-2 pt-lg-5 mt-lg-2 pe-lg-4 ps-lg-5 pe-4" >
                 <div class="form-input">
                     <label for="name">Name</label>
                     <input type="text" id="name" name="name" class = "d-flex form-control input"/>
                 </div>
-                <div class="form-input mt-lg-2">
-                    <label for="email">Email</label>
+                <div class="form-input mt-lg-2 row pe-1 me-0 ps-2">
+                    <label for="email" class = "ps-0 col-2 col-lg-1">Email</label>
                     <button 
-                    type="button" 
-                    class="btn"
+                    type="button"
+                    class = "btn btn-secondary"
+                    data-bs-toggle="tooltip" 
+                    data-bs-placement="left"
                     title="School email address (if you have one)... main email address (ie. gmail or something that will not automatically block your ability to receive your registration information)">
-                    ?
-                    </button>
+                    <span class="fa-solid fa-question"></span>
+                </button>
                     <input type="text" id="email" name="email" class = "d-flex form-control input" />
                 </div>
             </div>
             <div class="row">
-            <div class = " col-8 col-lg-4 offset-2 offset-lg-2 ps-lg-5 ps-3 pe-0 me-0">
+            <div class = " col-8 col-lg-4 offset-2 offset-lg-2 ps-lg-5 ps-3 pe-0 me-0 mb-lg-0 ">
                 <div class="form-input mt-lg-2">
                     <label for="pass">Pass</label>
                     <input type="password" id="pass" name="pass" class = "d-flex form-control input"/>
@@ -62,15 +63,17 @@
                     <input type="text" id="school" name="school" class = "d-flex form-control input"/>
                 </div>
             </div>
-            <br>
-                <div class = " col-8 col-lg-4 offset-2 offset-lg-0 ps-3 pe-0">
+                <div class = " col-8 col-lg-4 offset-2 offset-lg-0 ps-3 pe-0 ">
                     <div class="form-input mt-lg-2">
                         <label for="grade">Grade</label>
-                        <input type="text" id="grade" name="grade" class = "d-flex form-control input"/>
+                        <select name="grade" id="grade" class = "d-flex form-control input">
+                            <option value = "grade" disabled selected hidden>Select your grade</option>
+                            <option value = "grade">Example</option>
+                        </select>
                     </div>
                     <div class=" mt-lg-2">
                         <label for="country">Country</label>
-                        <input type = "datalist" list= "country" id="countries" name="country" class = "d-flex form-control input" placeholder="Select"/>
+                        <input type = "datalist" list= "country" id="countries" name="country" class = "d-flex form-control input" placeholder="Select your country"/>
                         <datalist id="country">
                             <option value="Example">
                         </datalist>
@@ -78,24 +81,23 @@
                     </div>
                     <div class="form-input mt-lg-2">
                         <label for="state">Province/State/Region</label>
-                        <input type="datalist" list = "state" id="states" name="state" class = "d-flex form-control input" placeholder="Select"/>
+                        <input type="datalist" list = "state" id="states" name="state" class = "d-flex form-control input" placeholder="Select your region"/>
                         <datalist id ="state">
                             <option value = "Example">
                         </datalist>
                     </div>
                     <div class="form-input mt-lg-2">
                         <label for="city">city</label>
-                        <input type="datalist" list = "city" id="cities" name="citie" class = "d-flex form-control input" placeholder = "Select"/>
+                        <input type="datalist" list = "city" id="cities" name="cities" class = "d-flex form-control input" placeholder = "Select your city"/>
                         <datalist id ="city">
                             <option value = "Example">
                         </datalist>
                     </div>
                 </div>
-                <br>
-                <div class="form-btn mt-lg-4 pe-lg-5  offset-lg-5">
+                <div class="form-btn mt-lg-0 mb-lg-5  pe-lg-5 offset-lg-5">
                     <input type="image" 
                     name="submit" 
-                    class = " col offset-7 col-lg-1 offset-lg-10 pe-2 pe-lg-0 justify-content-end "
+                    class = " col offset-7 col-lg-1 offset-lg-10 pe-2 pe-lg-0 justify-content-end"
                     style = "width:25%"
                     src="assets/ok btn normal.png" 
                     onMouseDown='src="assets/ok btn press.png"'
@@ -105,7 +107,6 @@
             </div>
             </form>
         </section>
-    </div>
 </body>
 </div>
 </html>
