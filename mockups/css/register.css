@@ -100,5 +100,5 @@ h1 {
         border-right: 3px solid  var(--primary-font);
         margin-right: 5%;
         padding-right: 3%;
+        padding-left: 65px;
     }
-    
