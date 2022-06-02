@@ -7,120 +7,120 @@
     <title>Register</title>
     <link rel="stylesheet" href="libs/bootstrap-5.1.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/register.css">
     <link rel="stylesheet" href="css/s4yt.css">
-    <link rel="stylesheet" href="libs/Untitled-1.js">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="stylesheet" href="assets/tooltip icons/fontawesome-free-6.1.1-web/css/all.css">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/register.css">
+    <script src="https://kit.fontawesome.com/dda0a07667.js" crossorigin="anonymous"></script>
 </head>
-<div>
 <body>
-    <header class=" mt-1">
-        <div class="row mb-4 mb-lg-0 mb-lg-0">
-            <div class = " col-6 col-lg-5 ps-4 d-flex justify-content-end mt-lg-3 mb-lg-3 pe-2 pe-lg-0" >
-                <img src="assets/logo S4YT.png" alt="logo" class = "logo" >
-            </div>
-            <div class = "col-1 align-items-center col-lg-7 ps-0 mt-lg-3 mt-2 me-3 me-lg-0 flex-column" >
-                <h1>Register</h1>   
-            </div>          
+    <!-- HEADER -->
+    <header>
+        <div class="col-8 offset-2 col-sm-4 offset-sm-0 col-lg-4 offset-lg-0 logo">
+            <img src="./assets/logo S4YT.png" alt="Logo S4YT">
+        </div>
+        <div class="col-8 offset-2 col-sm-6 offset-sm-0 title-div py-2">
+            <h1 class="title">Register</h1>
         </div>
     </header>
-        <form action="" class = "row ps-0 pt-3 pt-lg-0 mt-lg-0 mb-5 mb-lg-0 mt-3 mt-lg-0">
-            <div class = "col-8 col-lg-8 offset-2 offset-lg-2 pt-lg-5 mt-lg-2 pe-lg-4 ps-lg-5 pe-4" >
-                <div class="form-input">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" class = "d-flex form-control input"/>
-                    <div id="nameError" class="form-text" style="display:none">Enter a name</div>
+    <!-- FORM -->
+    <section class="row form-section">
+        <form class = "register-form">
+            <div class="col-8 my-4 form-wrapper">
+                <!-- NAME -->
+                <div class="form-input d-flex flex-column">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" name="name" id="name" class="form-control">
+                    <div id="emailError" class="form-text">Enter a name</div>
                 </div>
-                <div class="form-input mt-lg-2 row pe-1 me-0 ps-2">
-                    <label for="email" class = "ps-0 col-2 col-lg-1">Email</label>
-                    <button 
-                    type="button"
-                    class = "btn btn-secondary"
-                    data-bs-toggle="tooltip" 
-                    data-bs-placement="left"
-                    title="School email address (if you have one)... main email address (ie. gmail or something that will not automatically block your ability to receive your registration information)">
-                    <span class="fa-solid fa-question"></span>
-                    <div id="emailError" class="form-text" style="display:none">Incorrect Email Input</div>
-                </button>
-                    <input type="text" id="email" name="email" class = "d-flex form-control input" />
+                <!-- EMAIL -->
+                <div class="form-input d-flex flex-column">
+                    <div class="d-flex justify-content-between">
+                        <label for="email" class="form-label">Email</label>
+                        <i class="fa-solid fa-block-question icon fa-lg"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        data-bs-custom-class="custom-tooltip"
+                        title="This top tooltip is themed via CSS variables."></i>
+                    </div>
+                    <input type="text" name="email" id="email" class="form-control">
+                    <div id="emailError" class="form-text">Wrong Format</div>
                 </div>
-            </div>
-            <div class="row">
-            <div class = " col-8 col-lg-4 offset-2 offset-lg-2 ps-lg-5 ps-3 pe-0 me-0 mb-lg-0 ">
-                <div class="form-input mt-lg-2">
-                    <label for="pass">Pass</label>
-                    <input type="password" id="pass" name="pass" class = "d-flex form-control input"/>
-                    <div id="passwordError" class="form-text" style="display:none">Incorrect password requirments</div>
+                <!-- PASS -->
+                <div class="form-input d-flex flex-column">
+                    <label for="pass" class="form-label">Pass</label>
+                    <input type="text" name="pass" id="pass" class="form-control">
+                    <div id="emailError" class="form-text">Password must have at least 5 characters</div>
                 </div>
-                <div class="form-input mt-lg-2">
-                    <label for="confirm">Confirm Pass</label>
-                    <input type="password" id="confirm" name="confirm" class = "d-flex form-control input"/>
-                    <div id="confirmpassError" class="form-text" style="display:none">Passwords do not match</div>
+                <!-- PASS CONFIRMATION -->
+                <div class="form-input d-flex flex-column">
+                    <label for="pass_confirmation" class="form-label">Pass Confirm</label>
+                    <input type="text" name="pass_confirmation" id="pass_confirmation" class="form-control">
+                    <div id="emailError" class="form-text">Passwords do not match</div>
                 </div>
-                <div class="form-input mt-lg-2">
-                    <label for="school">School Name</label>
-                    <input type="text" id="school" name="school" class = "d-flex form-control input"/>
-                    <div id="schoolError" class="form-text" style="display:none">No school selected</div>
-                </div>
-                <div class="form-input mt-lg-2">
-                    <label for="edu">Education</label>
-                    <select name="edu" id="edu" class = "d-flex form-control input">
-                        <option value = "edu" disabled selected hidden>Select your education</option>
-                        <option value = "edu">Example</option>
+                <!-- EDUCATION -->
+                <div class="form-input d-flex flex-column">
+                    <label for="education" class="form-label">Education</label>
+                    <select name="education" id="education" class = "form-control">
+                        <option value="0" selected>Select your education</option>
+                        <option value="1">School</option>
+                        <option value="2">Example</option>
+                        <option value="3">Example</option>
                     </select>
-                    <div id="eduError" class="form-text" style="display:none">No education selected</div>
+                    <div id="educationError" class="form-text">No education selected</div>
                 </div>
-            </div>
-                <div class = " col-8 col-lg-4 offset-2 offset-lg-0 ps-3 pe-0 ">
-                    <div class="form-input mt-lg-2">
-                        <label for="grade">Grade</label>
-                        <select name="grade" id="grade" class = "d-flex form-control input">
-                            <option value = "grade" disabled selected hidden>Select your grade</option>
-                            <option value = "grade">Example</option>
-                        </select>
-                        <div id="gradeError" class="form-text" style="display:none">No grade selected</div>
-                    </div>
-                    <div class=" mt-lg-2">
-                        <label for="country">Country</label>
-                        <input type = "datalist" list= "country" id="country" name="country" class = "d-flex form-control input" placeholder="Select your country"/>
-                        <datalist id="country">
-                            <option value="Example">
-                        </datalist>
-                        <div id="countryError" class="form-text" style="display:none">No country selected</div>
-                    </div>
-                    <div class="form-input mt-lg-2">
-                        <label for="state">Province/State/Region</label>
-                        <input type="datalist" list = "state" id="state" name="state" class = "d-flex form-control input" placeholder="Select your region"/>
-                        <datalist id ="state">
-                            <option value = "Example">
-                        </datalist>
-                        <div id="stateError" class="form-text" style="display:none">No state selected</div>
-                    </div>
-                    <div class="form-input mt-lg-2">
-                        <label for="city">city</label>
-                        <input type="datalist" list = "city" id="city" name="city" class = "d-flex form-control input" placeholder = "Select your city"/>
-                        <datalist id ="city">
-                            <option value = "Example">
-                        </datalist>
-                        <div id="cityError" class="form-text" style="display:none">No city selected</div>
-                    </div>
+                <!-- SCHOOL -->
+                <div class="form-input d-flex flex-column">
+                    <label for="school" class="form-label">School</label>
+                    <input type="text" name="school" id="school" class="form-control">
+                    <div id="schoolError" class="form-text">Enter your school name</div>
                 </div>
-                <div class="form-btn mt-lg-0 mb-lg-5  pe-lg-5 offset-lg-5">
-                    <input type="image" 
-                    name="submit" 
-                    class = " col offset-7 col-lg-1 offset-lg-10 pe-2 pe-lg-0 justify-content-end"
-                    style = "width:25%"
-                    src="assets/ok btn normal.png" 
-                    onMouseDown='src="assets/ok btn press.png"'
-                    onMouseOut="src='assets/ok btn normal.png'" 
-                    onMouseOver='src="assets/ok btn hover.png"'/>
+                <!-- GRADE -->
+                <div class="form-input d-flex flex-column">
+                    <label for="grade" class="form-label">Grade</label>
+                    <input type="text" name="grade" id="grade" class="form-control">
+                    <div id="gradeError" class="form-text">Enter your grade</div>
                 </div>
+                <!-- COUNTRY -->
+                <div class="form-input mt-lg-2">
+                    <label for="country" class="form-label">Country</label>
+                    <input list="countries" name="country" id="country" class="form-control"  placeholder="Search your country">
+                    <datalist id="countries">
+                        <option value="Usa">
+                        <option value="Canada">
+                        <option value="Mexico">
+                        <option value="Spain">
+                      </datalist>
+                    <div id="countryError" class="form-text">No country selected</div>
+                </div>
+                <!-- PROVINCE -->
+                <div class="form-input mt-lg-2">
+                    <label for="state" class="form-label">State/Province</label>
+                    <input list="states" name="state" id="state" class="form-control"  placeholder="Search your state">
+                    <datalist id="states">
+                        <option value="Usa">
+                        <option value="Canada">
+                        <option value="Mexico">
+                        <option value="Spain">
+                      </datalist>
+                    <div id="stateError" class="form-text">No state/province selected</div>
+                </div>
+                 <!-- CITY -->
+                 <div class="form-input mt-lg-2">
+                    <label for="city" class="form-label">City</label>
+                    <input list="cities" name="city" id="city" class="form-control"  placeholder="Search your city">
+                    <datalist id="cities">
+                        <option value="Usa">
+                        <option value="Canada">
+                        <option value="Mexico">
+                        <option value="Spain">
+                      </datalist>
+                    <div id="stateError" class="form-text">No city selected</div>
+                </div>
+                <div class="form-input d-flex justify-content-end">  
+                    <input  type="image" name="register_btn" src="./assets/ok btn normal.png" class="register-btn col-3">
+                </div>                
+            </div>            
             </div>
             </form>
-        </section>
+    </section>
 </body>
-</div>
 </html>

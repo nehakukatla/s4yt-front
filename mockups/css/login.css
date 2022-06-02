@@ -1,27 +1,5 @@
-body {
-    background-image: url('./../assets/bg_mobile.png');
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-header {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.title-div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.form-section {
-    display: flex;
-    justify-content: center;    
+.form-input {
+    margin-bottom: 3vmin;
 }
 
 .login-form {
@@ -35,27 +13,6 @@ header {
     
 }
 
-.form-wrapper {
-    padding: 2vh 0;
-}
-
-.form-input {
-    margin-bottom: 3vmin;
-}
-
-input[type="text"], input[type="password"],
-input[type="text"]:focus, input[type="password"]:focus
-{
-    font-size:0.7rem;
-    border-color: var(--primary-font);
-}
-
-
-input[type="text"]:focus, input[type="password"]:focus
-{
-    box-shadow: 0 0 0 .1rem var(--primary-font)
-}
-
 .login-btn {
     width: 13vmin;
     height: 13vmin;
@@ -64,6 +21,18 @@ input[type="text"]:focus, input[type="password"]:focus
 
 /* Smartphone landscape and tablet portrait*/
 @media only screen and (min-width: 600px) {
+
+
+    body {
+        background-image: url('./../assets/bg.png');
+        background-size: auto;
+        background-repeat: no-repeat;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
     header {
         display: flex;
         flex-direction: row;

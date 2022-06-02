@@ -1,3 +1,75 @@
+.register-form {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    background-image: url('./../assets/back_paper_mob.png');
+    background-size: 100%;
+    background-repeat: no-repeat;    
+}
+
+/* Smartphone landscape and tablet portrait*/
+@media only screen and (min-width: 600px) {    
+
+    header {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        padding: 5% 0;
+    }
+
+    .logo {
+        border-right: 3px solid  var(--primary-font);
+        margin-right: 5%;
+        padding-right: 3%;
+    }
+
+    .title-div {
+        justify-content: start;
+        width: 50%;
+    }
+
+    .register-form {
+        background-size: 100%;
+        padding-bottom: 40vh;
+    } 
+
+    .form-input {
+        margin-bottom: 2vmin;
+    }
+    .form-wrapper {
+        padding-top: 5%;
+    }
+
+    .form-label {
+        font-size: 1.5rem;
+    }
+
+    .form-text {
+        font-size: 1.2rem;
+    }
+
+    .form-input:last-child, .form-input:nth-last-child(2) {
+        margin-bottom: 0;
+    }
+    
+  }
+
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media only screen and (min-width: 992px) {
+    .register-form {        
+        padding-bottom: 20vh;
+    }    
+}
+
+
+
+
+
+
+
+
+
+/*
 body {
     font-family: 'Bebas Neue', cursive;
     color: var(--primary-font);
@@ -92,3 +164,4 @@ h1 {
         margin-right: 5%;
         padding-right: 3%;
     }
+*/
