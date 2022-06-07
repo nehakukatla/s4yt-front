@@ -24,7 +24,7 @@
     <!-- FORM -->
     <section class="row form-section">
         <form class = "register-form">
-            <div class="col-8 my-4 form-wrapper">
+            <div class="col-8 my-4 form-wrapper row">
                 <!-- NAME -->
                 <div class="form-input d-flex flex-column">
                     <label for="name" class="form-label">Name</label>
@@ -45,19 +45,20 @@
                     <div id="emailError" class="form-text">Wrong Format</div>
                 </div>
                 <!-- PASS -->
+                <div class = "col-lg-6">
                 <div class="form-input d-flex flex-column">
                     <label for="pass" class="form-label">Pass</label>
                     <input type="text" name="pass" id="pass" class="form-control">
                     <div id="emailError" class="form-text">Password must have at least 5 characters</div>
                 </div>
                 <!-- PASS CONFIRMATION -->
-                <div class="form-input d-flex flex-column">
+                <div class="form-input d-flex flex-column pt-lg-2">
                     <label for="pass_confirmation" class="form-label">Pass Confirm</label>
                     <input type="text" name="pass_confirmation" id="pass_confirmation" class="form-control">
                     <div id="emailError" class="form-text">Passwords do not match</div>
                 </div>
                 <!-- EDUCATION -->
-                <div class="form-input d-flex flex-column">
+                <div class="form-input d-flex flex-column pt-lg-2">
                     <label for="education" class="form-label">Education</label>
                     <select name="education" id="education" class = "form-control">
                         <option value="0" selected>Select your education</option>
@@ -68,12 +69,14 @@
                     <div id="educationError" class="form-text">No education selected</div>
                 </div>
                 <!-- SCHOOL -->
-                <div class="form-input d-flex flex-column">
+                <div class="form-input d-flex flex-column pt-lg-3">
                     <label for="school" class="form-label">School</label>
                     <input type="text" name="school" id="school" class="form-control">
                     <div id="schoolError" class="form-text">Enter your school name</div>
                 </div>
+                </div>
                 <!-- GRADE -->
+                <div class = "col-lg-6">
                 <div class="form-input d-flex flex-column">
                     <label for="grade" class="form-label">Grade</label>
                     <input type="text" name="grade" id="grade" class="form-control">
@@ -114,6 +117,7 @@
                         <option value="Spain">
                       </datalist>
                     <div id="stateError" class="form-text">No city selected</div>
+                </div>
                 </div>
                 <div class="form-input d-flex justify-content-end">  
                     <input  type="image" name="register_btn" src="./assets/ok btn normal.png" class="register-btn col-3">
