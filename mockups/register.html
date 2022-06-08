@@ -26,98 +26,98 @@
         <form class = "register-form">
             <div class="col-8 my-4 form-wrapper row">
                 <!-- NAME -->
-                <div class="form-input d-flex flex-column">
-                    <label for="name" class="form-label">Name</label>
-                    <input type="text" name="name" id="name" class="form-control">
-                    <div id="emailError" class="form-text">Enter a name</div>
-                </div>
-                <!-- EMAIL -->
-                <div class="form-input d-flex flex-column">
-                    <div class="d-flex justify-content-between">
-                        <label for="email" class="form-label">Email</label>
-                        <i class="fa-solid fa-block-question icon fa-lg"
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top"
-                        data-bs-custom-class="custom-tooltip"
-                        title="This top tooltip is themed via CSS variables."></i>
-                    </div>
-                    <input type="text" name="email" id="email" class="form-control">
-                    <div id="emailError" class="form-text">Wrong Format</div>
-                </div>
-                <!-- PASS -->
                 <div class = "col-lg-6">
-                <div class="form-input d-flex flex-column">
-                    <label for="pass" class="form-label">Pass</label>
-                    <input type="text" name="pass" id="pass" class="form-control">
-                    <div id="emailError" class="form-text">Password must have at least 5 characters</div>
-                </div>
+                    <div class="form-input d-flex flex-column">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" name="name" id="name" class="form-control">
+                        <div id="emailError" class="form-text">Enter a name</div>
+                    </div>
+                <!-- EMAIL -->
+                    <div class="form-input d-flex flex-column">
+                        <div class="d-flex justify-content-between">
+                            <label for="email" class="form-label">Email</label>
+                            <i class="fa-solid fa-block-question icon fa-lg"
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="top"
+                            data-bs-custom-class="custom-tooltip"
+                            title="This top tooltip is themed via CSS variables."></i>
+                        </div>
+                        <input type="text" name="email" id="email" class="form-control">
+                        <div id="emailError" class="form-text">Wrong Format</div>
+                    </div>
+                <!-- PASS -->
+                    <div class="form-input d-flex flex-column pt-lg-1">
+                        <label for="pass" class="form-label">Pass</label>
+                        <input type="text" name="pass" id="pass" class="form-control">
+                        <div id="emailError" class="form-text">Password must have at least 5 characters</div>
+                    </div>
                 <!-- PASS CONFIRMATION -->
-                <div class="form-input d-flex flex-column pt-lg-2">
-                    <label for="pass_confirmation" class="form-label">Pass Confirm</label>
-                    <input type="text" name="pass_confirmation" id="pass_confirmation" class="form-control">
-                    <div id="emailError" class="form-text">Passwords do not match</div>
-                </div>
+                    <div class="form-input d-flex flex-column pt-lg-3">
+                        <label for="pass_confirmation" class="form-label">Pass Confirm</label>
+                        <input type="text" name="pass_confirmation" id="pass_confirmation" class="form-control">
+                        <div id="emailError" class="form-text">Passwords do not match</div>
+                    </div>
                 <!-- EDUCATION -->
-                <div class="form-input d-flex flex-column pt-lg-2">
-                    <label for="education" class="form-label">Education</label>
-                    <select name="education" id="education" class = "form-control">
-                        <option value="0" selected>Select your education</option>
-                        <option value="1">School</option>
-                        <option value="2">Example</option>
-                        <option value="3">Example</option>
-                    </select>
-                    <div id="educationError" class="form-text">No education selected</div>
+                    <div class="form-input d-flex flex-column pt-lg-1">
+                        <label for="education" class="form-label">Education</label>
+                        <select name="education" id="education" class = "form-control">
+                            <option value="0" selected>Select your education</option>
+                            <option value="1">School</option>
+                            <option value="2">Example</option>
+                            <option value="3">Example</option>
+                        </select>
+                        <div id="educationError" class="form-text">No education selected</div>
+                    </div>
                 </div>
                 <!-- SCHOOL -->
-                <div class="form-input d-flex flex-column pt-lg-3">
-                    <label for="school" class="form-label">School</label>
-                    <input type="text" name="school" id="school" class="form-control">
-                    <div id="schoolError" class="form-text">Enter your school name</div>
-                </div>
-                </div>
-                <!-- GRADE -->
                 <div class = "col-lg-6">
-                <div class="form-input d-flex flex-column">
-                    <label for="grade" class="form-label">Grade</label>
-                    <input type="text" name="grade" id="grade" class="form-control">
-                    <div id="gradeError" class="form-text">Enter your grade</div>
-                </div>
+                    <div class="form-input d-flex flex-column ">
+                        <label for="school" class="form-label">School</label>
+                        <input type="text" name="school" id="school" class="form-control">
+                        <div id="schoolError" class="form-text">Enter your school name</div>
+                    </div>
+                <!-- GRADE -->
+                    <div class="form-input d-flex flex-column">
+                        <label for="grade" class="form-label">Grade</label>
+                        <input type="text" name="grade" id="grade" class="form-control">
+                        <div id="gradeError" class="form-text">Enter your grade</div>
+                    </div>
                 <!-- COUNTRY -->
-                <div class="form-input mt-lg-2">
-                    <label for="country" class="form-label">Country</label>
-                    <input list="countries" name="country" id="country" class="form-control"  placeholder="Search your country">
-                    <datalist id="countries">
-                        <option value="Usa">
-                        <option value="Canada">
-                        <option value="Mexico">
-                        <option value="Spain">
-                      </datalist>
-                    <div id="countryError" class="form-text">No country selected</div>
-                </div>
+                    <div class="form-input ">
+                        <label for="country" class="form-label">Country</label>
+                        <input list="countries" name="country" id="country" class="form-control"  placeholder="Search your country">
+                        <datalist id="countries">
+                            <option value="Usa">
+                            <option value="Canada">
+                            <option value="Mexico">
+                            <option value="Spain">
+                        </datalist>
+                        <div id="countryError" class="form-text">No country selected</div>
+                    </div>
                 <!-- PROVINCE -->
-                <div class="form-input mt-lg-2">
-                    <label for="state" class="form-label">State/Province</label>
-                    <input list="states" name="state" id="state" class="form-control"  placeholder="Search your state">
-                    <datalist id="states">
-                        <option value="Usa">
-                        <option value="Canada">
-                        <option value="Mexico">
-                        <option value="Spain">
-                      </datalist>
-                    <div id="stateError" class="form-text">No state/province selected</div>
-                </div>
+                    <div class="form-input">
+                        <label for="state" class="form-label">State/Province</label>
+                        <input list="states" name="state" id="state" class="form-control"  placeholder="Search your state">
+                        <datalist id="states">
+                            <option value="Usa">
+                            <option value="Canada">
+                            <option value="Mexico">
+                            <option value="Spain">
+                        </datalist>
+                        <div id="stateError" class="form-text">No state/province selected</div>
+                    </div>
                  <!-- CITY -->
-                 <div class="form-input mt-lg-2">
-                    <label for="city" class="form-label">City</label>
-                    <input list="cities" name="city" id="city" class="form-control"  placeholder="Search your city">
-                    <datalist id="cities">
-                        <option value="Usa">
-                        <option value="Canada">
-                        <option value="Mexico">
-                        <option value="Spain">
-                      </datalist>
-                    <div id="stateError" class="form-text">No city selected</div>
-                </div>
+                    <div class="form-input">
+                        <label for="city" class="form-label">City</label>
+                        <input list="cities" name="city" id="city" class="form-control"  placeholder="Search your city">
+                        <datalist id="cities">
+                            <option value="Usa">
+                            <option value="Canada">
+                            <option value="Mexico">
+                            <option value="Spain">
+                        </datalist>
+                        <div id="stateError" class="form-text">No city selected</div>
+                    </div>
                 </div>
                 <div class="form-input d-flex justify-content-end">  
                     <input  type="image" name="register_btn" src="./assets/ok btn normal.png" class="register-btn col-3">

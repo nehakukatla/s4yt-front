@@ -56,14 +56,10 @@
 
     /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-    .register-form {      
-        padding-top:2vh;  
+    .register-form {        
         background-image: url('./../assets/see_bussinesses_back2.png');
-        width:155vh;
+        width:150vmin;
     } 
-    .icon {
-        margin-top: 2%;
-    }
     .register-btn {
         width:15%;
     }
@@ -78,10 +74,16 @@
         font-size:6vmin;
     }
     .form-label{
-        font-size: 2.5vmin;
+        font-size: 2.5vh;
     }
     .form-text {
         font-size: 2vmin;
+    }
+    .form-wrapper {
+        width:75%;
+    }
+    input {
+        font-size: 0vh;
     }
 }
 
