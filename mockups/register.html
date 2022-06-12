@@ -46,7 +46,7 @@
                         <div id="emailError" class="form-text">Wrong Format</div>
                     </div>
                 <!-- PASS -->
-                    <div class="form-input d-flex flex-column pt-lg-1">
+                    <div class="form-input d-flex flex-column pt-lg-2">
                         <label for="pass" class="form-label">Pass</label>
                         <input type="text" name="pass" id="pass" class="form-control">
                         <div id="emailError" class="form-text">Password must have at least 5 characters</div>
@@ -79,7 +79,12 @@
                 <!-- GRADE -->
                     <div class="form-input d-flex flex-column">
                         <label for="grade" class="form-label">Grade</label>
-                        <input type="text" name="grade" id="grade" class="form-control">
+                        <select name="grade" id="grade" class="form-control">
+                            <option value="0" selected>Select your grade</option>
+                            <option value="1">Example</option>
+                            <option value="2">Example</option>
+                            <option value="3">Example</option>
+                        </select>
                         <div id="gradeError" class="form-text">Enter your grade</div>
                     </div>
                 <!-- COUNTRY -->
