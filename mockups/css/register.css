@@ -1,10 +1,5 @@
 .register-form {
-    width: 90%;
-    display: flex;
-    justify-content: center;
     background-image: url('./../assets/back_paper_mob.png');
-    background-size: 100%;
-    background-repeat: no-repeat;    
 }
 
 /* Smartphone landscape and tablet portrait*/
