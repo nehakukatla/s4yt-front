@@ -1,15 +1,56 @@
-.register-form {
-    background-image: url('./../assets/back_paper_mob.png');
+header {
+    border: 1px solid red;
+    margin: 10% 0 5% 0;
 }
 
-/* Smartphone landscape and tablet portrait*/
+.register-form {
+    border: 1px solid blue;
+    background-repeat: no-repeat;
+    background-image: url('./../assets/mobile_form.png');
+    background-position: center center;
+    background-size: 80% 100%;
+    margin-bottom: 10%;
+    height: 60vh;
+}
+
+.steps {
+    border: 1px solid red;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+}
+
+.step {
+    height: 25px;
+    width: 25px;
+    margin: 0 2px;
+    background-color: #f9c146;
+    opacity: 0.5;
+    border: none;  
+    border-radius: 50%;
+    display: inline-block;
+    border: 2px solid var(--primary-font);
+    margin: 0 5%;
+    cursor: pointer;
+}
+
+.step.active, .step.done {
+    opacity: 1;
+}
+
+.test {
+    border: 1px solid green;
+}
+
+
+/* Tablet portrait*/
 @media only screen and (min-width: 600px) {    
 
     header {
         display: flex;
         flex-direction: row;
         justify-content: center;
-        padding: 5% 0;
+        margin: 10% 0 5% 0;
     }
 
     .logo {
@@ -23,9 +64,22 @@
         width: 50%;
     }
 
+    .form-section {
+        width: 100%;
+    }
+
+    .steps {
+        width: 60%;
+    }
+
+    .step {
+        height: 35px;
+        width: 35px;
+    }
+
     .register-form {
-        background-size: 100%;
-        padding-bottom: 40vh;
+        width: 80%;
+        height: 80vh;
     } 
 
     .form-input {
@@ -41,10 +95,6 @@
 
     .form-text {
         font-size: 1.2rem;
-    }
-
-    .form-input:last-child, .form-input:nth-last-child(2) {
-        margin-bottom: 0;
     }
     
   }
