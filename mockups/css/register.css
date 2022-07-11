@@ -79,7 +79,7 @@ header {
 
     .register-form {
         width: 80%;
-        height: 80vh;
+        height: 215vh;
     } 
 
     .form-input {
@@ -130,6 +130,7 @@ header {
     input {
         font-size: 0vh;
     }
+    
 }
 
 
