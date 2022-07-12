@@ -28,23 +28,25 @@
             <li class="active step" data-step-id="1">
                 <a href="#"></a>
             </li>
+            <li class="step-line" data-step-id="1"></li>
             <li class="step" data-step-id="2">
                 <a href="#"></a>
             </li>
+            <li class="step-line" data-step-id="2"></li>
             <li class="step" data-step-id="3">
                 <a href="#"></a>
             </li>
         </ul>
         <!-- FORM -->      
-        <form class = "register-form">            
+        <form class = "register-form" method="POST">            
             <div class="col-10 offset-1 my-5 form-wrapper row test py-5">
                 <!-- STEP I -->
                 <div class="col-10 offset-1 form-step" data-step-id="1">
                     <!-- NAME -->
                     <div class="form-input d-flex flex-column">
                         <label for="name" class="form-label">Name</label>
-                        <input type="text" name="name" id="name" class="form-control">
-                        <div id="emailError" class="form-text">Enter a name</div>
+                        <input type="text" name="name" id="name" class="form-control" autocomplete="off">
+                        <div id="emailError" class="form-text"></div>
                     </div>
                     <!-- EMAIL -->
                     <div class="form-input d-flex flex-column">
@@ -56,24 +58,24 @@
                             data-bs-custom-class="custom-tooltip"
                             title="This top tooltip is themed via CSS variables."></i>
                         </div>
-                        <input type="text" name="email" id="email" class="form-control">
-                        <div id="emailError" class="form-text">Wrong Format</div>
+                        <input type="text" name="email" id="email" class="form-control" autocomplete="off">
+                        <div id="emailError" class="form-text"></div>
                     </div>
                     <!-- PASS -->
                     <div class="form-input d-flex flex-column pt-lg-2">
                         <label for="pass" class="form-label">Pass</label>
-                        <input type="text" name="pass" id="pass" class="form-control">
-                        <div id="emailError" class="form-text">Password must have at least 5 characters</div>
+                        <input type="text" name="pass" id="pass" class="form-control" autocomplete="off">
+                        <div id="emailError" class="form-text"></div>
                     </div>
                     <!-- PASS CONFIRMATION -->
                     <div class="form-input d-flex flex-column pt-lg-3">
                         <label for="pass_confirmation" class="form-label">Pass Confirm</label>
-                        <input type="text" name="pass_confirmation" id="pass_confirmation" class="form-control">
-                        <div id="emailError" class="form-text">Passwords do not match</div>
+                        <input type="text" name="pass_confirmation" id="pass_confirmation" class="form-control" autocomplete="off">
+                        <div id="emailError" class="form-text"></div>
                     </div>
                     <!-- NEXT BUTTON -->
                     <div class="form-input d-flex justify-content-end">  
-                        <button class="btn_next">
+                        <button class="btn_form" data-step-id="1">
                             <img src="./assets/next.png" alt="next step">
                         </button>
                     </div>  
@@ -83,34 +85,34 @@
                     <!-- EDUCATION -->
                     <div class="form-input d-flex flex-column pt-lg-1">
                         <label for="education" class="form-label">Education</label>
-                        <select name="education" id="education" class = "form-control">
+                        <select name="education" id="education" class = "form-control" autocomplete="off">
                             <option value="0" selected>Select your education</option>
                             <option value="1">School</option>
                             <option value="2">Example</option>
                             <option value="3">Example</option>
                         </select>
-                        <div id="educationError" class="form-text">No education selected</div>
+                        <div id="educationError" class="form-text"></div>
                     </div>
                     <!-- SCHOOL -->
                     <div class="form-input d-flex flex-column ">
                         <label for="school" class="form-label">School</label>
-                        <input type="text" name="school" id="school" class="form-control">
-                        <div id="schoolError" class="form-text">Enter your school name</div>
+                        <input type="text" name="school" id="school" class="form-control" autocomplete="off">
+                        <div id="schoolError" class="form-text"></div>
                     </div>
                     <!-- GRADE -->
                     <div class="form-input d-flex flex-column">
                         <label for="grade" class="form-label">Grade</label>
-                        <select name="grade" id="grade" class="form-control">
+                        <select name="grade" id="grade" class="form-control" autocomplete="off">
                             <option value="0" selected>Select your grade</option>
                             <option value="1">Example</option>
                             <option value="2">Example</option>
                             <option value="3">Example</option>
                         </select>
-                        <div id="gradeError" class="form-text">Enter your grade</div>
+                        <div id="gradeError" class="form-text"></div>
                     </div>
                     <!-- NEXT BUTTON -->
                     <div class="form-input d-flex justify-content-end">  
-                        <button class="btn_next">
+                        <button class="btn_form" data-step-id="2">
                             <img src="./assets/next.png" alt="next step">
                         </button>
                     </div> 
@@ -120,43 +122,43 @@
                     <!-- COUNTRY -->
                     <div class="form-input d-flex flex-column">
                         <label for="country" class="form-label">Country</label>
-                        <input list="countries" type="text" name="country" id="country" class="form-control"  placeholder="Search your country">
+                        <input list="countries" type="text" name="country" id="country" class="form-control"  placeholder="Search your country" autocomplete="off">
                         <datalist id="countries">
                             <option value="Usa">
                             <option value="Canada">
                             <option value="Mexico">
                             <option value="Spain">
                         </datalist>
-                        <div id="countryError" class="form-text">No country selected</div>
+                        <div id="countryError" class="form-text"></div>
                     </div>
                     <!-- PROVINCE -->
                     <div class="form-input d-flex flex-column">
                         <label for="state" class="form-label">State/Province</label>
-                        <input list="states" type="text" name="state" id="state" class="form-control"  placeholder="Search your state">
+                        <input list="states" type="text" name="state" id="state" class="form-control"  placeholder="Search your state" autocomplete="off">
                         <datalist id="states">
                             <option value="Usa">
                             <option value="Canada">
                             <option value="Mexico">
                             <option value="Spain">
                         </datalist>
-                        <div id="stateError" class="form-text">No state/province selected</div>
+                        <div id="stateError" class="form-text"></div>
                     </div>
                     <!-- CITY -->
                     <div class="form-input d-flex flex-column">
                         <label for="city" class="form-label">City</label>
-                        <input list="cities" type="text" name="city" id="city" class="form-control"  placeholder="Search your city">
+                        <input list="cities" type="text" name="city" id="city" class="form-control"  placeholder="Search your city" autocomplete="off">
                         <datalist id="cities">
                             <option value="Usa">
                             <option value="Canada">
                             <option value="Mexico">
                             <option value="Spain">
                         </datalist>
-                        <div id="stateError" class="form-text">No city selected</div>
+                        <div id="stateError" class="form-text"></div>
                     </div>
                     <!-- NEXT BUTTON -->
                     <div class="form-input d-flex justify-content-end">  
-                        <button class="btn_next">
-                            <img src="./assets/submit.png" class="submit" alt="next step">
+                        <button class="btn_form" id="btn_submit">
+                            <img src="./assets/submit.png" alt="submit">
                         </button>
                     </div> 
                 </div>
@@ -164,23 +166,6 @@
         </form>
     </section>
     <script src="./libs/jquery-3.6.0/jquery.js"></script>
-    <script>
-        $(document).ready(function(){
-
-            $('.form-text').hide();
-
-            $('.step').on('click', function() {
-                const step_id = $(this).data('step-id');
-                const active = $(this).hasClass('active');
-                // change steps
-                if(!active) {
-                    $('.step').removeClass('active');
-                    $(this).addClass('active');
-                    $('.form-step').addClass('hidden');
-                    $('.form-step[data-step-id="' + step_id + '"]').removeClass('hidden');
-                }
-            });            
-        });
-    </script>
+    <script src="./js/register.js"></script>
 </body>
 </html>

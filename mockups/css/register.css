@@ -18,9 +18,11 @@ header {
     width: 80%;
     display: flex;
     justify-content: center;
+    list-style: none;
 }
 
 .step {
+    position: relative;
     height: 25px;
     width: 25px;
     margin: 0 2px;
@@ -30,11 +32,19 @@ header {
     border-radius: 50%;
     display: inline-block;
     border: 2px solid var(--primary-font);
-    margin: 0 5%;
+    margin: 0 3%;
     cursor: pointer;
 }
 
-.step.active, .step.done {
+.step-line {
+    width: 35px;
+    height: 5px;
+    margin-top: 10px;    
+    border-bottom: 3px dashed var(--primary-font);
+    opacity: 0.5;
+}
+
+.step.active, .step.done, .step-line.active {
     opacity: 1;
 }
 
@@ -42,12 +52,11 @@ header {
     border: 1px solid green;
 }
 
-.btn_next {
+.btn_form {
     width: 25%;
     background: transparent;
     border: none;
 }
-
 
 /* Tablet portrait*/
 @media only screen and (min-width: 600px) {    
@@ -108,7 +117,7 @@ header {
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
     .register-form {        
-        background-image: url('./../assets/see_bussinesses_back2.png');
+        background-image: url('./../assets/login_form.png');
         width:150vmin;
     } 
     .register-btn {
