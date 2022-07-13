@@ -151,7 +151,7 @@ export default class RegisterForm extends Component {
 							step={this.state.step}
 							nextStep={this.nextStep}
 							handleChange={this.handleChange}
-							errors={this.state.education.errors}
+							errors={this.state.educationStep.errors}
 						/>
 						<RegisterLocation
 							step={this.state.step}
