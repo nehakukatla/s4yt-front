@@ -6,6 +6,12 @@ export class RegisterEducation extends Component {
 		super(props);
 		this.state = { stepId: 2 };
 	}
+
+	nextStep = (e) => {
+		e.preventDefault();
+		this.props.nextStep();
+	};
+
 	render() {
 		return (
 			<div
@@ -23,10 +29,13 @@ export class RegisterEducation extends Component {
 						id="education"
 						className="form-control"
 						autoComplete="off"
+						onChange={this.props.handleChange("education")}
 					>
 						<option value="0">Select your education</option>
 					</select>
-					<div id="educationError" className="form-text"></div>
+					<div id="educationError" className="form-text">
+						{this.props.errors.education}
+					</div>
 				</div>
 				{/* <!-- SCHOOL --> */}
 				<div className="form-input d-flex flex-column ">
@@ -39,8 +48,11 @@ export class RegisterEducation extends Component {
 						id="school"
 						className="form-control"
 						autoComplete="off"
+						onChange={this.props.handleChange("school")}
 					/>
-					<div id="schoolError" className="form-text"></div>
+					<div id="schoolError" className="form-text">
+						{this.props.errors.school}
+					</div>
 				</div>
 				{/* <!-- GRADE --> */}
 				<div className="form-input d-flex flex-column">
@@ -52,17 +64,17 @@ export class RegisterEducation extends Component {
 						id="grade"
 						className="form-control"
 						autoComplete="off"
+						onChange={this.props.handleChange("grade")}
 					>
 						<option value="0">Select your grade</option>
-						<option value="1">Example</option>
-						<option value="2">Example</option>
-						<option value="3">Example</option>
 					</select>
-					<div id="gradeError" className="form-text"></div>
+					<div id="gradeError" className="form-text">
+						{this.props.errors.grade}
+					</div>
 				</div>
 				{/* <!-- NEXT BUTTON --> */}
 				<div className="form-input d-flex justify-content-end">
-					<button className="btn_form" data-step-id="2">
+					<button className="btn_form" onClick={this.nextStep} data-step-id="2">
 						<img src={images.next} alt="next step" />
 					</button>
 				</div>

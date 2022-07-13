@@ -36,6 +36,18 @@ header {
     cursor: pointer;
 }
 
+.step.error::after {
+    content: '\f00d';
+    font: normal normal normal 14px/1 FontAwesome;
+    color: var(--error-font);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
 .step-line {
     width: 35px;
     height: 5px;
