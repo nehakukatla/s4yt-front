@@ -4,6 +4,8 @@ import { RegisterEducation } from "./RegisterEducation";
 import { RegisterLocation } from "./RegisterLocation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import axios from "./../config/axios";
+import env from "react-dotenv";
 
 export default class RegisterForm extends Component {
 	constructor(props) {
@@ -38,6 +40,8 @@ export default class RegisterForm extends Component {
 					school: "",
 					grade: "",
 				},
+				education_api: false,
+				education: [],
 			},
 			location: {
 				error: false,
@@ -52,6 +56,23 @@ export default class RegisterForm extends Component {
 		this.handleChange = this.handleChange.bind(this);
 		this.nextStep = this.nextStep.bind(this);
 		this.submit = this.submit.bind(this);
+	}
+
+	componentDidMount() {
+		axios.get("/educations").then((response) => {
+			if (!response.data.success) {
+				// Provide error message
+			}
+			this.setState((prevState) => {
+				return {
+					...prevState,
+					educationStep: {
+						education: response.data.data.educations,
+						education_api: true,
+					},
+				};
+			});
+		});
 	}
 
 	toggleStep = (e) => {
@@ -69,19 +90,25 @@ export default class RegisterForm extends Component {
 	nextStep = () => {
 		const { step } = this.state;
 		console.log(step === 1);
-		this.setState({
-			step: step + 1,
-			base: {
-				next: step === 1 || this.state.base.next,
-			},
-			education: {
-				next: step === 2 && this.state.base.next,
-			},
+		this.setState((prevState) => {
+			return {
+				...prevState,
+				step: step + 1,
+				base: {
+					next: step === 1 || this.state.base.next,
+				},
+				educationStep: {
+					next: step === 2 && this.state.base.next,
+				},
+			};
 		});
 	};
 
-	submit = (e) => {
+	submit = () => {
 		// TODO: validate form
+		let validate = true;
+		if (validate) {
+		}
 	};
 
 	render() {
@@ -145,19 +172,18 @@ export default class RegisterForm extends Component {
 							step={this.state.step}
 							nextStep={this.nextStep}
 							handleChange={this.handleChange}
-							errors={this.state.base.errors}
 						/>
 						<RegisterEducation
 							step={this.state.step}
 							nextStep={this.nextStep}
 							handleChange={this.handleChange}
-							errors={this.state.educationStep.errors}
+							education_api={this.state.educationStep.education_api}
+							education={this.state.educationStep.education}
 						/>
 						<RegisterLocation
 							step={this.state.step}
 							nextStep={this.nextStep}
 							handleChange={this.handleChange}
-							errors={this.state.location.errors}
 							submit={this.submit}
 						/>
 					</div>

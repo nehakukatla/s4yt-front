@@ -33,9 +33,7 @@ export class RegisterBase extends Component {
 						autoComplete="off"
 						onChange={this.props.handleChange("name")}
 					/>
-					<div id="nameError" className="form-text">
-						{this.props.errors.name}
-					</div>
+					<div id="nameError" className="form-text"></div>
 				</div>
 				{/* <!-- EMAIL --> */}
 				<div className="form-input d-flex flex-column">
@@ -60,9 +58,7 @@ export class RegisterBase extends Component {
 						autoComplete="off"
 						onChange={this.props.handleChange("email")}
 					/>
-					<div id="emailError" className="form-text">
-						{this.props.errors.email}
-					</div>
+					<div id="emailError" className="form-text"></div>
 				</div>
 				{/* <!-- PASS --> */}
 				<div className="form-input d-flex flex-column pt-lg-2">
@@ -77,9 +73,7 @@ export class RegisterBase extends Component {
 						autoComplete="off"
 						onChange={this.props.handleChange("password")}
 					/>
-					<div id="passwordError" className="form-text">
-						{this.props.errors.password}
-					</div>
+					<div id="passwordError" className="form-text"></div>
 				</div>
 				{/* <!-- PASS CONFIRMATION --> */}
 				<div className="form-input d-flex flex-column pt-lg-3">
@@ -94,9 +88,7 @@ export class RegisterBase extends Component {
 						autoComplete="off"
 						onChange={this.props.handleChange("password_confirmation")}
 					/>
-					<div id="passwordConfirmationError" className="form-text">
-						{this.props.errors.password_confirmation}
-					</div>
+					<div id="passwordConfirmationError" className="form-text"></div>
 				</div>
 				{/* <!-- NEXT BUTTON --> */}
 				<div className="form-input d-flex justify-content-end">

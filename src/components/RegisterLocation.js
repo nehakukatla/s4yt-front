@@ -35,9 +35,7 @@ export class RegisterLocation extends Component {
 						onChange={this.props.handleChange("country_iso")}
 					/>
 					<datalist id="countries"></datalist>
-					<div id="countryError" className="form-text">
-						{this.props.errors.country_iso}
-					</div>
+					<div id="countryError" className="form-text"></div>
 				</div>
 				{/* <!-- PROVINCE --> */}
 				<div className="form-input d-flex flex-column">
@@ -55,9 +53,7 @@ export class RegisterLocation extends Component {
 						onChange={this.props.handleChange("state_iso")}
 					/>
 					<datalist id="states"></datalist>
-					<div id="stateError" className="form-text">
-						{this.props.errors.state_iso}
-					</div>
+					<div id="stateError" className="form-text"></div>
 				</div>
 				{/* <!-- CITY --> */}
 				<div className="form-input d-flex flex-column">
@@ -75,9 +71,7 @@ export class RegisterLocation extends Component {
 						onChange={this.props.handleChange("city_id")}
 					/>
 					<datalist id="cities"></datalist>
-					<div id="cityError" className="form-text">
-						{this.props.errors.city_id}
-					</div>
+					<div id="cityError" className="form-text"></div>
 				</div>
 				{/* <!-- NEXT BUTTON --> */}
 				<div className="form-input d-flex justify-content-end">

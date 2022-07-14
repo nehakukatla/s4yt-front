@@ -135,6 +135,11 @@ select:focus {
     display: none;
 }
 
+.spinner {
+    color: var(--primary-font);
+    margin: 1% 2%;
+}
+
 @media only screen  and (orientation: landscape){
     body {
         background-image: url('./../assets/img/bg.png');
