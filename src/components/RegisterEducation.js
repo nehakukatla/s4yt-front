@@ -79,6 +79,11 @@ export class RegisterEducation extends Component {
 						onChange={this.props.handleChange("grade")}
 					>
 						<option value="0">Select your grade</option>
+						{this.props.grade.map((grades) => (
+							<option value={grades.id} key={grades.id}>
+								{grades.name}
+							</option>
+						))}
 					</select>
 					<div id="gradeError" className="form-text"></div>
 				</div>

@@ -5,7 +5,7 @@ import { RegisterLocation } from "./RegisterLocation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import axios from "./../config/axios";
-import env from "react-dotenv";
+//import env from "react-dotenv";
 
 export default class RegisterForm extends Component {
 	constructor(props) {
@@ -42,6 +42,9 @@ export default class RegisterForm extends Component {
 				},
 				education_api: false,
 				education: [],
+				grade_api: false,
+				grade: [],
+				
 			},
 			location: {
 				error: false,
@@ -69,6 +72,22 @@ export default class RegisterForm extends Component {
 					educationStep: {
 						education: response.data.data.educations,
 						education_api: true,
+					},
+				};
+			});
+		});
+		
+		axios.get("/grades").then((response) => {
+			if (!response.data.success) {
+				// Provide error message
+			}
+			
+			this.setState((prevState) => {
+				return {
+					...prevState,
+					educationStep: {
+						grade: response.data.data.grades,
+						
 					},
 				};
 			});
@@ -112,6 +131,8 @@ export default class RegisterForm extends Component {
 	};
 
 	render() {
+		console.log(this.state.educationStep.education);
+		console.log(this.state.educationStep.grade);
 		return (
 			<section className="row form-section">
 				<ul className="steps">
@@ -179,6 +200,7 @@ export default class RegisterForm extends Component {
 							handleChange={this.handleChange}
 							education_api={this.state.educationStep.education_api}
 							education={this.state.educationStep.education}
+							grade={this.state.educationStep.grade}
 						/>
 						<RegisterLocation
 							step={this.state.step}
