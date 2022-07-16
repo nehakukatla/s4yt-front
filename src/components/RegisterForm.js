@@ -44,7 +44,6 @@ export default class RegisterForm extends Component {
 				education: [],
 				grade_api: false,
 				grade: [],
-				
 			},
 			location: {
 				error: false,
@@ -70,24 +69,25 @@ export default class RegisterForm extends Component {
 				return {
 					...prevState,
 					educationStep: {
+						...prevState.educationStep,
 						education: response.data.data.educations,
 						education_api: true,
 					},
 				};
 			});
 		});
-		
+
 		axios.get("/grades").then((response) => {
 			if (!response.data.success) {
 				// Provide error message
 			}
-			
+
 			this.setState((prevState) => {
 				return {
 					...prevState,
 					educationStep: {
+						...prevState.educationStep,
 						grade: response.data.data.grades,
-						
 					},
 				};
 			});
