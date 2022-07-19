@@ -46,7 +46,7 @@
                     <div class="form-input d-flex flex-column">
                         <label for="name" class="form-label">Name</label>
                         <input type="text" name="name" id="name" class="form-control" autocomplete="off">
-                        <div id="emailError" class="form-text"></div>
+                        <div id="nameError" class="form-text">Enter a name</div>
                     </div>
                     <!-- EMAIL -->
                     <div class="form-input d-flex flex-column">
@@ -58,20 +58,21 @@
                             data-bs-custom-class="custom-tooltip"
                             title="This top tooltip is themed via CSS variables."></i>
                         </div>
-                        <input type="text" name="email" id="email" class="form-control" autocomplete="off">
-                        <div id="emailError" class="form-text"></div>
+                        <input type="email" name="email" id="email" class="form-control" autocomplete="off">
+                        <div id="emailError" class="form-text">Wrong Format</div>
+                        <div id="emailError1" class="form-text">Enter an Email</div>
                     </div>
                     <!-- PASS -->
                     <div class="form-input d-flex flex-column pt-lg-2">
                         <label for="pass" class="form-label">Pass</label>
-                        <input type="text" name="pass" id="pass" class="form-control" autocomplete="off">
-                        <div id="emailError" class="form-text"></div>
+                        <input type="password" name="pass" id="pass" class="form-control" autocomplete="off">
+                        <div id="passwordError" class="form-text">Password must have at least 5 charectars</div>
                     </div>
                     <!-- PASS CONFIRMATION -->
                     <div class="form-input d-flex flex-column pt-lg-3">
                         <label for="pass_confirmation" class="form-label">Pass Confirm</label>
-                        <input type="text" name="pass_confirmation" id="pass_confirmation" class="form-control" autocomplete="off">
-                        <div id="emailError" class="form-text"></div>
+                        <input type="password" name="pass_confirmation" id="pass_confirmation" class="form-control" autocomplete="off">
+                        <div id="passwordConfirmationError" class="form-text">Passwords do not match</div>
                     </div>
                     <!-- NEXT BUTTON -->
                     <div class="form-input d-flex justify-content-end">  
