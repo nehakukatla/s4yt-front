@@ -40,6 +40,7 @@ export default class RegisterForm extends Component {
 					school: "",
 					grade: "",
 				},
+				school_hidden: true,
 				education_api: false,
 				education: [],
 				grade_api: false,
@@ -104,6 +105,17 @@ export default class RegisterForm extends Component {
 	// Handle fields change and validation
 	handleChange = (input) => (e) => {
 		this.setState({ [input]: e.target.value });
+		if (input === "education") {
+			this.setState((prevState) => {
+				return {
+					...prevState,
+					educationStep: {
+						...prevState.educationStep,
+						school_hidden: !(e.target.value === "1"),
+					},
+				};
+			});
+		}
 	};
 
 	nextStep = () => {
@@ -131,8 +143,6 @@ export default class RegisterForm extends Component {
 	};
 
 	render() {
-		console.log(this.state.educationStep.education);
-		console.log(this.state.educationStep.grade);
 		return (
 			<section className="row form-section">
 				<ul className="steps">
@@ -201,6 +211,7 @@ export default class RegisterForm extends Component {
 							education_api={this.state.educationStep.education_api}
 							education={this.state.educationStep.education}
 							grade={this.state.educationStep.grade}
+							school_hidden={this.state.educationStep.school_hidden}
 						/>
 						<RegisterLocation
 							step={this.state.step}
