@@ -63,6 +63,7 @@ export class RegisterEducation extends Component {
 						className="form-control"
 						autoComplete="off"
 						onChange={this.props.handleChange("school")}
+						disabled={!this.props.hidden}
 					/>
 					<div id="schoolError" className="form-text"></div>
 				</div>
@@ -76,6 +77,7 @@ export class RegisterEducation extends Component {
 						id="grade"
 						className="form-control"
 						autoComplete="off"
+						disabled = {!this.props.hidden}
 						onChange={this.props.handleChange("grade")}
 					>
 						<option value="0">Select your grade</option>
