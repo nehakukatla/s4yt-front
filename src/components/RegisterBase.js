@@ -58,7 +58,7 @@ export class RegisterBase extends Component {
 						id="email"
 						className="form-control"
 						autoComplete="off"
-						onChange={this.props.handleChange("email")}
+						onChange={this.handleChange("email")}
 					/>
 					<div id="emailError" className="form-text">
 						{this.props.errors.email}

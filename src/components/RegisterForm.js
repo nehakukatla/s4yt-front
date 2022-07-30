@@ -68,7 +68,7 @@ export default class RegisterForm extends Component {
 
 	nextStep = () => {
 		const { step } = this.state;
-		console.log(step === 1);
+		console.log(step);
 		this.setState({
 			step: step + 1,
 			base: {
