@@ -4,6 +4,8 @@ import { RegisterEducation } from "./RegisterEducation";
 import { RegisterLocation } from "./RegisterLocation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import axios from "./../config/axios";
+//import env from "react-dotenv";
 
 export default class RegisterForm extends Component {
 	constructor(props) {
@@ -38,6 +40,11 @@ export default class RegisterForm extends Component {
 					school: "",
 					grade: "",
 				},
+				school_hidden: true,
+				education_api: false,
+				education: [],
+				grade_api: false,
+				grade: [],
 			},
 			location: {
 				error: false,
@@ -54,6 +61,40 @@ export default class RegisterForm extends Component {
 		this.submit = this.submit.bind(this);
 	}
 
+	componentDidMount() {
+		axios.get("/educations").then((response) => {
+			if (!response.data.success) {
+				// Provide error message
+			}
+			this.setState((prevState) => {
+				return {
+					...prevState,
+					educationStep: {
+						...prevState.educationStep,
+						education: response.data.data.educations,
+						education_api: true,
+					},
+				};
+			});
+		});
+
+		axios.get("/grades").then((response) => {
+			if (!response.data.success) {
+				// Provide error message
+			}
+
+			this.setState((prevState) => {
+				return {
+					...prevState,
+					educationStep: {
+						...prevState.educationStep,
+						grade: response.data.data.grades,
+					},
+				};
+			});
+		});
+	}
+
 	toggleStep = (e) => {
 		const stepId = e.target.getAttribute("data-step-id");
 		this.setState({
@@ -64,24 +105,43 @@ export default class RegisterForm extends Component {
 	// Handle fields change and validation
 	handleChange = (input) => (e) => {
 		this.setState({ [input]: e.target.value });
+		if (input === "education") {
+			this.setState((prevState) => {
+				return {
+					...prevState,
+					educationStep: {
+						...prevState.educationStep,
+						school_hidden: !(e.target.value === "1"),
+					},
+				};
+			});
+		}
 	};
 
 	nextStep = () => {
 		const { step } = this.state;
-		console.log(step);
-		this.setState({
-			step: step + 1,
-			base: {
-				next: step === 1 || this.state.base.next,
-			},
-			education: {
-				next: step === 2 && this.state.base.next,
-			},
+		console.log(step === 1);
+		this.setState((prevState) => {
+			return {
+				...prevState,
+				step: step + 1,
+				base: {
+					...prevState.base,
+					next: step === 1 || this.state.base.next,
+				},
+				educationStep: {
+					...prevState.educationStep,
+					next: step === 2 && this.state.base.next,
+				},
+			};
 		});
 	};
 
-	submit = (e) => {
+	submit = () => {
 		// TODO: validate form
+		let validate = true;
+		if (validate) {
+		}
 	};
 
 	render() {
@@ -145,19 +205,20 @@ export default class RegisterForm extends Component {
 							step={this.state.step}
 							nextStep={this.nextStep}
 							handleChange={this.handleChange}
-							errors={this.state.base.errors}
 						/>
 						<RegisterEducation
 							step={this.state.step}
 							nextStep={this.nextStep}
 							handleChange={this.handleChange}
-							errors={this.state.educationStep.errors}
+							education_api={this.state.educationStep.education_api}
+							education={this.state.educationStep.education}
+							grade={this.state.educationStep.grade}
+							school_hidden={this.state.educationStep.school_hidden}
 						/>
 						<RegisterLocation
 							step={this.state.step}
 							nextStep={this.nextStep}
 							handleChange={this.handleChange}
-							errors={this.state.location.errors}
 							submit={this.submit}
 						/>
 					</div>

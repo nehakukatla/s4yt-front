@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import images from "./../assets/images";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 export class RegisterEducation extends Component {
 	constructor(props) {
@@ -21,24 +23,40 @@ export class RegisterEducation extends Component {
 			>
 				{/* <!-- EDUCATION --> */}
 				<div className="form-input d-flex flex-column pt-lg-1">
-					<label htmlFor="education" className="form-label">
-						Education
-					</label>
+					<div className="d-flex justify-content-start	">
+						<label htmlFor="education" className="form-label">
+							Education
+						</label>
+						<FontAwesomeIcon
+							icon={faSpinner}
+							className={`spinner fa-spin ${
+								this.props.education_api ? "hidden" : ""
+							}`}
+						/>
+					</div>
 					<select
 						name="education"
 						id="education"
 						className="form-control"
 						autoComplete="off"
 						onChange={this.props.handleChange("education")}
+						disabled={!this.props.education_api}
 					>
 						<option value="0">Select your education</option>
+						{this.props.education.map((education) => (
+							<option value={education.id} key={education.id}>
+								{education.name}
+							</option>
+						))}
 					</select>
-					<div id="educationError" className="form-text">
-						{this.props.errors.education}
-					</div>
+					<div id="educationError" className="form-text"></div>
 				</div>
 				{/* <!-- SCHOOL --> */}
-				<div className="form-input d-flex flex-column ">
+				<div
+					className={`form-input d-flex flex-column ${
+						this.props.school_hidden ? "hidden" : ""
+					}`}
+				>
 					<label htmlFor="school" className="form-label">
 						School
 					</label>
@@ -50,9 +68,7 @@ export class RegisterEducation extends Component {
 						autoComplete="off"
 						onChange={this.props.handleChange("school")}
 					/>
-					<div id="schoolError" className="form-text">
-						{this.props.errors.school}
-					</div>
+					<div id="schoolError" className="form-text"></div>
 				</div>
 				{/* <!-- GRADE --> */}
 				<div className="form-input d-flex flex-column">
@@ -64,13 +80,17 @@ export class RegisterEducation extends Component {
 						id="grade"
 						className="form-control"
 						autoComplete="off"
+						disabled={!this.props.hidden}
 						onChange={this.props.handleChange("grade")}
 					>
 						<option value="0">Select your grade</option>
+						{this.props.grade.map((grades) => (
+							<option value={grades.id} key={grades.id}>
+								{grades.name}
+							</option>
+						))}
 					</select>
-					<div id="gradeError" className="form-text">
-						{this.props.errors.grade}
-					</div>
+					<div id="gradeError" className="form-text"></div>
 				</div>
 				{/* <!-- NEXT BUTTON --> */}
 				<div className="form-input d-flex justify-content-end">

@@ -132,7 +132,12 @@ select:focus {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
+}
+
+.spinner {
+    color: var(--primary-font);
+    margin: 1% 2%;
 }
 
 @media only screen  and (orientation: landscape){
