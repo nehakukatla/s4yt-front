@@ -1,15 +1,71 @@
-.register-form {
-    background-image: url('./../assets/img/back_paper_mob.png');
+header {
+    border: 1px solid red;
+    margin: 10% 0 5% 0;
 }
 
-/* Smartphone landscape and tablet portrait*/
+.register-form {
+    border: 1px solid blue;
+    background-repeat: no-repeat;
+    background-image: url('./../assets/img/mobile_form.png');
+    background-position: center center;
+    background-size: 80% 100%;
+    margin-bottom: 10%;
+    height: 60vh;
+}
+
+.steps {
+    border: 1px solid red;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+
+.step {
+    position: relative;
+    height: 25px;
+    width: 25px;
+    margin: 0 2px;
+    background-color: #f9c146;
+    opacity: 0.5;
+    border: none;  
+    border-radius: 50%;
+    display: inline-block;
+    border: 2px solid var(--primary-font);
+    margin: 0 3%;
+    cursor: pointer;
+}
+
+.step-line {
+    width: 35px;
+    height: 5px;
+    margin-top: 10px;    
+    border-bottom: 3px dashed var(--primary-font);
+    opacity: 0.5;
+}
+
+.step.active, .step.done, .step-line.active {
+    opacity: 1;
+}
+
+.test {
+    border: 1px solid green;
+}
+
+.btn_form {
+    width: 25%;
+    background: transparent;
+    border: none;
+}
+
+/* Tablet portrait*/
 @media only screen and (min-width: 600px) {    
 
     header {
         display: flex;
         flex-direction: row;
         justify-content: center;
-        padding: 5% 0;
+        margin: 10% 0 5% 0;
     }
 
     .logo {
@@ -23,9 +79,22 @@
         width: 50%;
     }
 
+    .form-section {
+        width: 100%;
+    }
+
+    .steps {
+        width: 60%;
+    }
+
+    .step {
+        height: 35px;
+        width: 35px;
+    }
+
     .register-form {
-        background-size: 100%;
-        padding-bottom: 40vh;
+        width: 80%;
+        height: 80vh;
     } 
 
     .form-input {
@@ -42,17 +111,13 @@
     .form-text {
         font-size: 1.2rem;
     }
-
-    .form-input:last-child, .form-input:nth-last-child(2) {
-        margin-bottom: 0;
-    }
     
   }
 
-    /* Large devices (laptops/desktops, 992px and up) */
+/* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
     .register-form {        
-        background-image: url('./../assets/img/see_bussinesses_back2.png');
+        background-image: url('./../assets/img/login_form.png');
         width:150vmin;
     } 
     .register-btn {

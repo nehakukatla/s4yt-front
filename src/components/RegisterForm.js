@@ -1,94 +1,168 @@
-import React from "react";
-import images from './../assets/images'
+import React, { Component } from "react";
+import { RegisterBase } from "./RegisterBase";
+import { RegisterEducation } from "./RegisterEducation";
+import { RegisterLocation } from "./RegisterLocation";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
-const RegisterForm = () => {
-  return  <section class="row form-section">
-            <form class = "auth-form register-form">
-              <div class="col-8 my-4 form-wrapper row">
-                <div class = "col-lg-6">
-                  {/* NAME */}
-                  <div class="form-input d-flex flex-column">
-                    <label for="name" class="form-label">Name</label>
-                    <input type="text" name="name" id="name" class="form-control"/>
-                    <div id="emailError" class="form-text"></div>
-                  </div>
-                  {/* EMAIL */}
-                  <div class="form-input d-flex flex-column">
-                    <div class="d-flex justify-content-between">
-                      <label for="email" class="form-label">Email</label>
-                      <i class="fa-solid fa-block-question icon fa-lg"
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top"
-                        data-bs-custom-class="custom-tooltip"
-                        title="This top tooltip is themed via CSS variables."></i>
-                    </div>
-                    <input type="text" name="email" id="email" class="form-control" />
-                    <div id="emailError" class="form-text"></div>
-                  </div>
-                  {/* PASS */}
-                  <div class="form-input d-flex flex-column pt-lg-2">
-                    <label for="pass" class="form-label">Pass</label>
-                    <input type="text" name="pass" id="pass" class="form-control"/>
-                    <div id="emailError" class="form-text"></div>
-                  </div>
-                  {/* PASS CONFIRMATION */}
-                  <div class="form-input d-flex flex-column pt-lg-3">
-                    <label for="pass_confirmation" class="form-label">Pass Confirm</label>
-                    <input type="text" name="pass_confirmation" id="pass_confirmation" class="form-control"/>
-                    <div id="emailError" class="form-text"></div>
-                  </div>
-                  {/* EDUCATION */}
-                  <div class="form-input d-flex flex-column pt-lg-1">
-                    <label for="education" class="form-label">Education</label>
-                    <select name="education" id="education" class = "form-control">
-                      <option value="0" selected>Select your education</option>
-                      </select>
-                    <div id="educationError" class="form-text"></div>
-                  </div>
-                </div>
-                <div class = "col-lg-6">
-                  {/* SCHOOL */}
-                  <div class="form-input d-flex flex-column ">
-                    <label for="school" class="form-label">School</label>
-                    <input type="text" name="school" id="school" class="form-control"/>
-                    <div id="schoolError" class="form-text"></div>
-                  </div>
-                  {/* GRADE */}
-                  <div class="form-input d-flex flex-column">
-                    <label for="grade" class="form-label">Grade</label>
-                    <select name="grade" id="grade" class="form-control">
-                      <option value="0" selected>Select your grade</option>
-                    </select>
-                    <div id="gradeError" class="form-text"></div>
-                  </div>
-                  {/* COUNTRY */}
-                  <div class="form-input ">
-                    <label for="country" class="form-label">Country</label>
-                    <input list="countries" name="country" id="country" class="form-control"  placeholder="Search your country" />
-                    <datalist id="countries"></datalist>
-                    <div id="countryError" class="form-text"></div>
-                  </div>
-                  {/* STATE */}
-                  <div class="form-input">
-                    <label for="state" class="form-label">State/Province</label>
-                    <input list="states" name="state" id="state" class="form-control"  placeholder="Search your state"/>
-                    <datalist id="states"></datalist>
-                    <div id="stateError" class="form-text"></div>
-                  </div>
-                  {/* CITY */}
-                  <div class="form-input">
-                    <label for="city" class="form-label">City</label>
-                    <input list="cities" name="city" id="city" class="form-control"  placeholder="Search your city"/>
-                    <datalist id="cities"></datalist>
-                    <div id="stateError" class="form-text"></div>
-                  </div>
-                </div>
-                <div class="form-input d-flex justify-content-end">  
-                    <input  type="image" name="register_btn" src={images.submit} class="register-btn col-3"/>
-                </div> 
-              </div>
-            </form>
-          </section>;
+export default class RegisterForm extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			step: 1,
+			name: "",
+			email: "",
+			password: "",
+			password_confirmation: "",
+			education: "",
+			school: "",
+			grade: "",
+			country_iso: "",
+			state_iso: "",
+			city_id: "",
+			base: {
+				next: false,
+				error: false,
+				errors: {
+					name: "",
+					email: "",
+					password: "",
+					password_confirmation: "",
+				},
+			},
+			educationStep: {
+				next: false,
+				error: false,
+				errors: {
+					education: "",
+					school: "",
+					grade: "",
+				},
+			},
+			location: {
+				error: false,
+				errors: {
+					country_iso: "",
+					state_iso: "",
+					city_id: "",
+				},
+			},
+		};
+		this.toggleStep = this.toggleStep.bind(this);
+		this.handleChange = this.handleChange.bind(this);
+		this.nextStep = this.nextStep.bind(this);
+		this.submit = this.submit.bind(this);
+	}
+
+	toggleStep = (e) => {
+		const stepId = e.target.getAttribute("data-step-id");
+		this.setState({
+			step: parseInt(stepId),
+		});
+	};
+
+	// Handle fields change and validation
+	handleChange = (input) => (e) => {
+		this.setState({ [input]: e.target.value });
+	};
+
+	nextStep = () => {
+		const { step } = this.state;
+		console.log(step);
+		this.setState({
+			step: step + 1,
+			base: {
+				next: step === 1 || this.state.base.next,
+			},
+			education: {
+				next: step === 2 && this.state.base.next,
+			},
+		});
+	};
+
+	submit = (e) => {
+		// TODO: validate form
+	};
+
+	render() {
+		return (
+			<section className="row form-section">
+				<ul className="steps">
+					<li
+						className={`step ${
+							this.state.step === 1 || this.state.base.next ? "active" : ""
+						} error`}
+						data-step-id="1"
+						onClick={this.toggleStep}
+					>
+						<FontAwesomeIcon
+							icon={faXmark}
+							className={`icon-error ${this.state.base.error ? "" : "hidden"}`}
+						/>
+					</li>
+					<li
+						className={`step-line ${this.state.base.next ? "active" : ""}`}
+					></li>
+					<li
+						className={`step ${
+							this.state.step === 2 || this.state.base.next ? "active" : ""
+						}`}
+						data-step-id="2"
+						onClick={this.toggleStep}
+					>
+						<FontAwesomeIcon
+							icon={faXmark}
+							className={`icon-error ${
+								this.state.education.error ? "" : "hidden"
+							}`}
+						/>
+					</li>
+					<li
+						className={`step-line ${
+							this.state.educationStep.next ? "active" : ""
+						}`}
+					></li>
+					<li
+						className={`step ${
+							this.state.step === 3 || this.state.educationStep.next
+								? "active"
+								: ""
+						}`}
+						data-step-id="3"
+						onClick={this.toggleStep}
+					>
+						<FontAwesomeIcon
+							icon={faXmark}
+							className={`icon-error ${
+								this.state.location.error ? "" : "hidden"
+							}`}
+						/>
+					</li>
+				</ul>
+				<form className="register-form" method="POST">
+					<div className="col-10 offset-1 my-5 form-wrapper row test">
+						<RegisterBase
+							step={this.state.step}
+							nextStep={this.nextStep}
+							handleChange={this.handleChange}
+							errors={this.state.base.errors}
+						/>
+						<RegisterEducation
+							step={this.state.step}
+							nextStep={this.nextStep}
+							handleChange={this.handleChange}
+							errors={this.state.educationStep.errors}
+						/>
+						<RegisterLocation
+							step={this.state.step}
+							nextStep={this.nextStep}
+							handleChange={this.handleChange}
+							errors={this.state.location.errors}
+							submit={this.submit}
+						/>
+					</div>
+				</form>
+			</section>
+		);
+	}
 }
-
-export default RegisterForm
