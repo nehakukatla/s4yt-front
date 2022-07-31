@@ -126,9 +126,11 @@ export default class RegisterForm extends Component {
 				...prevState,
 				step: step + 1,
 				base: {
+					...prevState.base,
 					next: step === 1 || this.state.base.next,
 				},
 				educationStep: {
+					...prevState.educationStep,
 					next: step === 2 && this.state.base.next,
 				},
 			};
