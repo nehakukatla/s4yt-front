@@ -1,18 +1,9 @@
-import logo from './logo.svg';
-import './App.css';
-import { Routes, Route, Link } from "react-router-dom";
+import react from "react";
+import Login from "./Login";
+import Register from "./Register";
 
 function App() {
-  return (
-    <div className="App">
-      <Routes>
-        <Route path="/login" />
-        <Route path="/register" />
-        <Route path="/forgot-password" />
-        <Route path="/game" />
-      </Routes>
-    </div>
-  );
+    return <Login />;
 }
 
-export default App;
+export default App

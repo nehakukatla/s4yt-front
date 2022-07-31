@@ -1,0 +1,160 @@
+header {
+    border: 1px solid red;
+    margin: 10% 0 5% 0;
+}
+
+.register-form {
+    border: 1px solid blue;
+    background-repeat: no-repeat;
+    background-image: url('./../assets/mobile_form.png');
+    background-position: center center;
+    background-size: 80% 100%;
+    margin-bottom: 10%;
+    height: 60vh;
+}
+
+.steps {
+    border: 1px solid red;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+
+.step {
+    position: relative;
+    height: 25px;
+    width: 25px;
+    margin: 0 2px;
+    background-color: #f9c146;
+    opacity: 0.5;
+    border: none;  
+    border-radius: 50%;
+    display: inline-block;
+    border: 2px solid var(--primary-font);
+    margin: 0 3%;
+    cursor: pointer;
+}
+
+.step.error::after {
+    content: '\f00d';
+    font: normal normal normal 14px/1 FontAwesome;
+    color: var(--error-font);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.step-line {
+    width: 35px;
+    height: 5px;
+    margin-top: 10px;    
+    border-bottom: 3px dashed var(--primary-font);
+    opacity: 0.5;
+}
+
+.step.active, .step.done, .step-line.active {
+    opacity: 1;
+}
+
+.test {
+    border: 1px solid green;
+}
+
+.btn_form {
+    width: 25%;
+    background: transparent;
+    border: none;
+}
+
+/* Tablet portrait*/
+@media only screen and (min-width: 600px) {    
+
+    header {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin: 10% 0 5% 0;
+    }
+
+    .logo {
+        border-right: 3px solid  var(--primary-font);
+        margin-right: 5%;
+        padding-right: 3%;
+    }
+
+    .title-div {
+        justify-content: start;
+        width: 50%;
+    }
+
+    .form-section {
+        width: 100%;
+    }
+
+    .steps {
+        width: 60%;
+    }
+
+    .step {
+        height: 35px;
+        width: 35px;
+    }
+
+    .register-form {
+        width: 80%;
+        height: 80vh;
+    } 
+
+    .form-input {
+        margin-bottom: 2vmin;
+    }
+    .form-wrapper {
+        padding-top: 5%;
+    }
+
+    .form-label {
+        font-size: 1.5rem;
+    }
+
+    .form-text {
+        font-size: 1.2rem;
+    }
+    
+  }
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .register-form {        
+        background-image: url('./../assets/login_form.png');
+        width:150vmin;
+    } 
+    .register-btn {
+        width:15%;
+    }
+    .form-input{
+        margin-bottom: 1.2vmin;
+        font-size: 2.6vmin;
+    }
+    .logo {
+        width:43vh;
+    }
+    .title {
+        font-size:6vmin;
+    }
+    .form-label{
+        font-size: 2.5vh;
+    }
+    .form-text {
+        font-size: 2vmin;
+    }
+    .form-wrapper {
+        width:75%;
+    }
+    input {
+        font-size: 0vh;
+    }
+}
