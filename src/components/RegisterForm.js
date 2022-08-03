@@ -19,7 +19,8 @@ export default class RegisterForm extends Component {
 			education: "",
 			school: "",
 			grade: "",
-			country_iso: "",
+			country: "" /* country input */,
+			country_iso: "" /* country_iso hidden */,
 			state_iso: "",
 			city_id: "",
 			base: {
@@ -53,6 +54,12 @@ export default class RegisterForm extends Component {
 					state_iso: "",
 					city_id: "",
 				},
+				countries: [],
+				country_disabled: true,
+				country_spinner_hidden: false,
+				states: [],
+				state_disabled: true,
+				state_spinner_hidden: true,
 			},
 		};
 		this.toggleStep = this.toggleStep.bind(this);
@@ -93,6 +100,24 @@ export default class RegisterForm extends Component {
 				};
 			});
 		});
+
+		axios.get("/location/countries").then((response) => {
+			if (!response.data.success) {
+				// Provide error message
+			}
+
+			this.setState((prevState) => {
+				return {
+					...prevState,
+					location: {
+						...prevState.location,
+						country_disabled: false,
+						country_spinner_hidden: true,
+						countries: response.data.data.countries,
+					},
+				};
+			});
+		});
 	}
 
 	toggleStep = (e) => {
@@ -114,6 +139,43 @@ export default class RegisterForm extends Component {
 						school_hidden: !(e.target.value === "1"),
 					},
 				};
+			});
+		}
+
+		if (input === "country") {
+			this.state.location.countries.map((country) => {
+				if (country.name === e.target.value) {
+					// update state
+					this.setState((prevState) => {
+						return {
+							...prevState,
+							country_iso: country.iso2,
+							location: {
+								...prevState.location,
+								state_spinner_hidden: false,
+							},
+						};
+					});
+					axios
+						.get("/location/states", { params: { ciso: country.iso2 } })
+						.then((response) => {
+							if (!response.data.success) {
+								// Provide error message
+							}
+
+							this.setState((prevState) => {
+								return {
+									...prevState,
+									location: {
+										...prevState.location,
+										state_disabled: false,
+										state_spinner_hidden: true,
+										states: response.data.data.states,
+									},
+								};
+							});
+						});
+				}
 			});
 		}
 	};
@@ -220,6 +282,12 @@ export default class RegisterForm extends Component {
 							nextStep={this.nextStep}
 							handleChange={this.handleChange}
 							submit={this.submit}
+							countryDisabled={this.state.location.country_disabled}
+							countrySpinner={this.state.location.country_spinner_hidden}
+							countries={this.state.location.countries}
+							stateDisabled={this.state.location.state_disabled}
+							stateSpinner={this.state.location.state_spinner_hidden}
+							states={this.state.location.states}
 						/>
 					</div>
 				</form>

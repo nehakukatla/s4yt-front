@@ -80,7 +80,6 @@ export class RegisterEducation extends Component {
 						id="grade"
 						className="form-control"
 						autoComplete="off"
-						disabled={!this.props.hidden}
 						onChange={this.props.handleChange("grade")}
 					>
 						<option value="0">Select your grade</option>

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import images from "./../assets/images";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 export class RegisterLocation extends Component {
 	constructor(props) {
@@ -21,27 +23,48 @@ export class RegisterLocation extends Component {
 			>
 				{/* <!-- COUNTRY --> */}
 				<div className="form-input d-flex flex-column">
-					<label htmlFor="country_iso" className="form-label">
-						Country
-					</label>
+					<div className="d-flex justify-content-between">
+						<label htmlFor="country_iso" className="form-label">
+							Country
+						</label>
+						<FontAwesomeIcon
+							icon={faSpinner}
+							className={`icon fa-spin ${
+								this.props.countrySpinner ? "hidden" : ""
+							}`}
+						/>
+					</div>
 					<input
 						list="countries"
 						type="text"
-						name="country_iso"
-						id="country_iso"
+						name="country"
+						id="country"
 						className="form-control"
 						placeholder="Search your country"
 						autoComplete="off"
-						onChange={this.props.handleChange("country_iso")}
+						onChange={this.props.handleChange("country")}
+						disabled={this.props.countryDisabled}
 					/>
-					<datalist id="countries"></datalist>
+					<datalist id="countries">
+						{this.props.countries.map((country) => (
+							<option value={country.name} key={country.iso2}></option>
+						))}
+					</datalist>
 					<div id="countryError" className="form-text"></div>
 				</div>
 				{/* <!-- PROVINCE --> */}
 				<div className="form-input d-flex flex-column">
-					<label htmlFor="state_iso" className="form-label">
-						State/Province
-					</label>
+					<div className="d-flex justify-content-between">
+						<label htmlFor="state_iso" className="form-label">
+							State/Province
+						</label>
+						<FontAwesomeIcon
+							icon={faSpinner}
+							className={`icon fa-spin ${
+								this.props.stateSpinner ? "hidden" : ""
+							}`}
+						/>
+					</div>
 					<input
 						list="states"
 						type="text"
@@ -51,8 +74,13 @@ export class RegisterLocation extends Component {
 						placeholder="Search your state"
 						autoComplete="off"
 						onChange={this.props.handleChange("state_iso")}
+						disabled={this.props.stateDisabled}
 					/>
-					<datalist id="states"></datalist>
+					<datalist id="states">
+						{this.props.states.map((state) => (
+							<option value={state.name} key={state.iso2}></option>
+						))}
+					</datalist>
 					<div id="stateError" className="form-text"></div>
 				</div>
 				{/* <!-- CITY --> */}
