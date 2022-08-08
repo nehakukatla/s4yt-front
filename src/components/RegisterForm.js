@@ -60,6 +60,11 @@ export default class RegisterForm extends Component {
 				states: [],
 				state_disabled: true,
 				state_spinner_hidden: true,
+				state_api: false,
+				cities: [],
+				city_disabled: true,
+				city_spinner_hidden: true,
+				city_api: false,
 			},
 		};
 		this.toggleStep = this.toggleStep.bind(this);
@@ -152,7 +157,7 @@ export default class RegisterForm extends Component {
 							country_iso: country.iso2,
 							location: {
 								...prevState.location,
-								state_spinner_hidden: false,
+								state_spinner_hidden: this.state.location.state_api,
 							},
 						};
 					});
@@ -169,16 +174,70 @@ export default class RegisterForm extends Component {
 									location: {
 										...prevState.location,
 										state_disabled: false,
+										state_api: true,
 										state_spinner_hidden: true,
 										states: response.data.data.states,
 									},
 								};
 							});
 						});
+					}
+					else if (country.name !== e.target.value){
+						document.getElementById("state_iso").value = ""
+						document.getElementById("city_id").value = ""
+						this.state.location.state_disabled = true
+						this.state.location.city_disabled = true
+					}
+				})
+			}
+			if (input === "state") {
+				this.state.location.states.map((state) => {
+					if (state.name === e.target.value) {
+						// update state
+						this.setState((prevState) => {
+							return {
+								...prevState,
+								state_iso: state.iso2,
+								location: {
+									...prevState.location,
+									city_spinner_hidden: this.state.location.city_api,
+								},
+							};
+						});
+						axios
+							.get("/location/cities", {
+								 params: {
+									 ciso: this.state.country_iso, 
+									 siso: state.iso2 
+									}
+								})
+							.then((response) => {
+								if (!response.data.success) {
+									// Provide error message
+								}
+
+								this.setState((prevState) => {
+									return {
+										...prevState,
+										location: {
+											...prevState.location,
+											city_disabled: false,
+											city_api: true,
+											city_spinner_hidden: true,
+											cities: response.data.data.cities,
+										},
+									};
+								});
+							});
+						
 				}
-			});
-		}
+				else if (state.name !== e.target.value){
+					document.getElementById("city_id").value = ""
+					this.state.location.city_disabled = true
+				}
+			})
 	};
+}
 
 	nextStep = () => {
 		const { step } = this.state;
@@ -288,6 +347,11 @@ export default class RegisterForm extends Component {
 							stateDisabled={this.state.location.state_disabled}
 							stateSpinner={this.state.location.state_spinner_hidden}
 							states={this.state.location.states}
+							state_api={this.state.location.state_api}
+							cityDisabled={this.state.location.city_disabled}
+							citySpinner={this.state.location.city_spinner_hidden}
+							cities={this.state.location.cities}
+							city_api={this.state.location.city_api}
 						/>
 					</div>
 				</form>
