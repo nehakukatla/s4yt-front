@@ -42,6 +42,7 @@ export class RegisterLocation extends Component {
 						className="form-control"
 						placeholder="Search your country"
 						autoComplete="off"
+						value={this.props.country_iso}
 						onChange={this.props.handleChange("country")}
 						disabled={this.props.countryDisabled}
 					/>
@@ -85,9 +86,17 @@ export class RegisterLocation extends Component {
 				</div>
 				{/* <!-- CITY --> */}
 				<div className="form-input d-flex flex-column">
-					<label htmlFor="city_id" className="form-label">
-						City
-					</label>
+					<div className="d-flex justify-content-between">
+						<label htmlFor="state_iso" className="form-label">
+							City
+						</label>
+						<FontAwesomeIcon
+							icon={faSpinner}
+							className={`icon fa-spin ${
+								this.props.stateSpinner ? "hidden" : ""
+							}`}
+						/>
+					</div>
 					<input
 						list="cities"
 						type="text"
@@ -97,8 +106,13 @@ export class RegisterLocation extends Component {
 						placeholder="Search your city"
 						autoComplete="off"
 						onChange={this.props.handleChange("city_id")}
+						disabled={this.props.cityDisabled}
 					/>
-					<datalist id="cities"></datalist>
+					{/* <datalist id="city">
+						{this.props.cities.map((city) => (
+							<option value={city.name} key={city.id}></option>
+						))}
+					</datalist> */}
 					<div id="cityError" className="form-text"></div>
 				</div>
 				{/* <!-- NEXT BUTTON --> */}
