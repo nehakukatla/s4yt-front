@@ -74,7 +74,7 @@ export class RegisterLocation extends Component {
 						className="form-control"
 						placeholder="Search your state"
 						autoComplete="off"
-						onChange={this.props.handleChange("state_iso")}
+						onChange={this.props.handleChange("state")}
 						disabled={this.props.stateDisabled}
 					/>
 					<datalist id="states">
