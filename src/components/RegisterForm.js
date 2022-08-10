@@ -183,8 +183,19 @@ export default class RegisterForm extends Component {
 							});
 						});
 				}
+				else if (country.name !== e.target.value){
+					document.getElementById("state_iso").value = ""
+					document.getElementById("city_id").value = ""
+					this.setState({
+						city_disabled: true,
+						city_spinner_hidden:false,
+						state_disabled:false,
+						state_spinner_hidden:false,
+					});
+				}
 			});
 		}
+		
 
 		if (input === "state_iso") {
 			//console.log(this.state.country_iso);
@@ -223,6 +234,14 @@ export default class RegisterForm extends Component {
 								};
 							});
 						});
+				}
+				else if (state.name !== e.target.value){
+					document.getElementById("city_id").value = ""
+					this.setState({
+						city_disabled: true,
+						city_spinner_hidden:false,
+						
+					});
 				}
 			});
 		}

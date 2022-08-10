@@ -98,7 +98,7 @@ export class RegisterLocation extends Component {
 						/>
 					</div>
 					<input
-						list="cities"
+						list="city"
 						type="text"
 						name="city_id"
 						id="city_id"
@@ -108,11 +108,11 @@ export class RegisterLocation extends Component {
 						onChange={this.props.handleChange("city_id")}
 						disabled={this.props.cityDisabled}
 					/>
-					{/* <datalist id="city">
+					<datalist id="city">
 						{this.props.cities.map((city) => (
 							<option value={city.name} key={city.id}></option>
 						))}
-					</datalist> */}
+					</datalist>
 					<div id="cityError" className="form-text"></div>
 				</div>
 				{/* <!-- NEXT BUTTON --> */}
