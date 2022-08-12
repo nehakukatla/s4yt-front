@@ -107,7 +107,7 @@ export class RegisterLocation extends Component {
 					/>
 					<datalist id="cities">
 					{this.props.cities.map((city) => (
-							<option value={city.name} key={city.iso2}></option>
+							<option value={city.name} key={city.id}></option>
 						))}
 					</datalist>
 					<div id="cityError" className="form-text"></div>
