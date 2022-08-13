@@ -85,28 +85,35 @@ export class RegisterLocation extends Component {
 				</div>
 				{/* <!-- CITY --> */}
 				<div className="form-input d-flex flex-column">
-					<label htmlFor="city_id" className="form-label">
-						City
-					</label>
-					<FontAwesomeIcon
+					<div className="d-flex justify-content-between">
+						<label htmlFor="state_iso" className="form-label">
+							City
+						</label>
+						<FontAwesomeIcon
 							icon={faSpinner}
 							className={`icon fa-spin ${
 								this.props.citySpinner ? "hidden" : ""
 							}`}
 						/>
+					</div>
 					<input
-						list="cities"
+						list="city"
 						type="text"
 						name="city_id"
 						id="city_id"
 						className="form-control"
 						placeholder="Search your city"
 						autoComplete="off"
-						onChange={this.props.handleChange("city")}
+						onChange={this.props.handleChange("city_id")}
 						disabled={this.props.cityDisabled}
 					/>
+<<<<<<< HEAD
 					<datalist id="cities">
 					{this.props.cities.map((city) => (
+=======
+					<datalist id="city">
+						{this.props.cities.map((city) => (
+>>>>>>> 2cb5c64155535c1685333a53cbd3464707a30999
 							<option value={city.name} key={city.id}></option>
 						))}
 					</datalist>

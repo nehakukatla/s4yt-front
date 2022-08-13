@@ -60,7 +60,6 @@ export default class RegisterForm extends Component {
 				states: [],
 				state_disabled: true,
 				state_spinner_hidden: true,
-				state_api: false,
 				cities: [],
 				city_disabled: true,
 				city_spinner_hidden: true,
@@ -147,7 +146,10 @@ export default class RegisterForm extends Component {
 		}
 
 		if (input === "country") {
+			console.log(this.state.country_iso);
+			document.getElementById('state_iso').value='';
 			this.state.location.countries.map((country) => {
+				
 				if (country.name === e.target.value) {
 					// update state
 					this.setState((prevState) => {
@@ -160,6 +162,7 @@ export default class RegisterForm extends Component {
 							},
 						};
 					});
+					
 					axios
 						.get("/location/states", { params: { ciso: country.iso2 } })
 						.then((response) => {
@@ -236,34 +239,65 @@ export default class RegisterForm extends Component {
 						});
 						
 				}
-				else if (state.name !== e.target.value){
-					this.setState((prevState) => {
-						document.getElementById("city_id").value = ""
-						return {
-							...prevState,
-							location: {
-								...prevState.location,
-								city_disabled: true
-							},
-						};
+				else if (country.name !== e.target.value){
+					document.getElementById("state_iso").value = ""
+					document.getElementById("city_id").value = ""
+					this.setState({
+						city_disabled: true,
+						city_spinner_hidden:false,
+						state_disabled:false,
+						state_spinner_hidden:false,
 					});
 				}
-			})
+			});
 		}
-		if (input === "city") {
-			this.state.location.cities.map((city) => {
-				if (city.name === e.target.value) {	
+		
+
+		if (input === "state_iso") {
+			//console.log(this.state.country_iso);
+			//document.getElementById('state_iso').value='';
+			this.state.location.states.map((state) => {
+				
+				if (state.name === e.target.value) {
 					// update state
 					this.setState((prevState) => {
 						return {
 							...prevState,
-							city_id: city.id,						
-							};
+							state_iso: state.iso2,
+							location: {
+								...prevState.location,
+								city_spinner_hidden: false,
+							},
+						};
+					});
+					
+					axios
+						.get("/location/cities", { params: { ciso: this.state.country_iso, siso: state.iso2}, })
+						.then((response) => {
+							if (!response.data.success) {
+								// Provide error message
+							}
+							console.log(response.data.data.cities);
+							this.setState((prevState) => {
+								return {
+									...prevState,
+									location: {
+										...prevState.location,
+										city_disabled: false,
+										city_spinner_hidden: true,
+										cities: response.data.data.cities,
+									},
+								};
+							});
 						});
-					};
-				});
-			}			
-};
+				}
+				else if (state.name !== e.target.value){
+					document.getElementById("city_id").value = ""
+					this.state.location.city_disabled = true
+				}
+			})
+	};
+}
 
 	nextStep = () => {
 		const { step } = this.state;
