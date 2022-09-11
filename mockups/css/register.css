@@ -1,20 +1,17 @@
 header {
-    border: 1px solid red;
     margin: 10% 0 5% 0;
 }
 
 .register-form {
-    border: 1px solid blue;
     background-repeat: no-repeat;
     background-image: url('./../assets/mobile_form.png');
     background-position: center center;
     background-size: 80% 100%;
     margin-bottom: 10%;
-    height: 60vh;
+    height: 100vh;
 }
 
 .steps {
-    border: 1px solid red;
     width: 80%;
     display: flex;
     justify-content: center;
@@ -60,35 +57,30 @@ header {
     opacity: 1;
 }
 
-.test {
-    border: 1px solid green;
-}
-
 .btn_form {
-    width: 25%;
+    width: 35%;
     background: transparent;
     border: none;
 }
 
 /* Tablet portrait*/
-@media only screen and (min-width: 600px) {    
+@media only screen and (min-width: 600px) {   
 
     header {
         display: flex;
         flex-direction: row;
         justify-content: center;
-        margin: 10% 0 5% 0;
+        width: 80%;
     }
 
-    .logo {
+    .logo {        
+        padding-right: 2.5%;
         border-right: 3px solid  var(--primary-font);
-        margin-right: 5%;
-        padding-right: 3%;
     }
 
     .title-div {
         justify-content: start;
-        width: 50%;
+        margin-left: 2.5%;
     }
 
     .form-section {
@@ -106,12 +98,25 @@ header {
 
     .register-form {
         width: 80%;
-        height: 215vh;
-    } 
+        height: 80vh;
+    }
+
+    .form-label {
+        font-size: 1.4rem;
+    }
 
     .form-input {
-        margin-bottom: 2vmin;
+        margin-bottom: 4vmin;
     }
+
+    .form-control {
+        padding: .5rem .75rem;
+    }
+
+    .icon {
+        margin: 4% 0;
+    }
+
     .form-wrapper {
         padding-top: 5%;
     }
@@ -123,6 +128,10 @@ header {
     .form-text {
         font-size: 1.2rem;
     }
+
+    .btn_form {
+        width: 30%;
+    }
     
   }
 
@@ -130,14 +139,19 @@ header {
 @media only screen and (min-width: 992px) {
     .register-form {        
         background-image: url('./../assets/login_form.png');
-        width:150vmin;
+        width:180vmin;
+        height: 90vh;
     } 
-    .register-btn {
-        width:15%;
+
+    .icon {
+        margin: 2% 0;
+    }
+
+    .btn_form {
+        width: 12%;
     }
     .form-input{
-        margin-bottom: 1.2vmin;
-        font-size: 2.6vmin;
+        margin-bottom: 1.2rem;
     }
     .logo {
         width:43vh;
@@ -146,15 +160,12 @@ header {
         font-size:6vmin;
     }
     .form-label{
-        font-size: 2.5vh;
+        font-size:1.2rem;
     }
     .form-text {
         font-size: 2vmin;
     }
     .form-wrapper {
-        width:75%;
-    }
-    input {
-        font-size: 0vh;
+        width:80%;
     }
 }

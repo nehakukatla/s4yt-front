@@ -46,7 +46,7 @@
                     <div class="form-input d-flex flex-column">
                         <label for="name" class="form-label">Name</label>
                         <input type="text" name="name" id="name" class="form-control" autocomplete="off">
-                        <div id="nameError" class="form-text">Enter a name</div>
+                        <div id="nameError" class="form-text">Error message</div>
                     </div>
                     <!-- EMAIL -->
                     <div class="form-input d-flex flex-column">
@@ -56,24 +56,22 @@
                             data-bs-toggle="tooltip"
                             data-bs-placement="top"
                             data-bs-custom-class="custom-tooltip"
-                            title="This top tooltip is themed via CSS variables."></i>
+                            title='This needs to be your "regular personal" email and NOT an institutional (school) email address in order for you to receive your entry confirmation and for it not to be filtered out!'></i>
                         </div>
-                        <input type="email" name="email" id="email" class="form-control" autocomplete="off">
-                        <div id="emailError" class="form-text">Wrong Format</div>
-                        <div id="emailError1" class="form-text">Enter an Email</div>
+                        <input type="text" name="email" id="email" class="form-control" autocomplete="off">
+                        <div id="emailError" class="form-text">Error message</div>
                     </div>
                     <!-- PASS -->
                     <div class="form-input d-flex flex-column pt-lg-2">
                         <label for="pass" class="form-label">Pass</label>
                         <input type="password" name="pass" id="pass" class="form-control" autocomplete="off">
-                        <div id="passwordError" class="form-text">Password must have at least 5 charectars</div>
+                        <div id="passwordError" class="form-text">Error message</div>
                     </div>
                     <!-- PASS CONFIRMATION -->
                     <div class="form-input d-flex flex-column pt-lg-3">
                         <label for="pass_confirmation" class="form-label">Pass Confirm</label>
                         <input type="password" name="pass_confirmation" id="pass_confirmation" class="form-control" autocomplete="off">
-                        <div id="passwordConfirmationError" class="form-text">Passwords do not match</div>
-                        <div id="passwordConfirmationError1" class="form-text">Password Confirmation should be filled</div>
+                        <div id="passwordConfirmationError" class="form-text">Error message</div>
                     </div>
                     <!-- NEXT BUTTON -->
                     <div class="form-input d-flex justify-content-end">  
@@ -93,13 +91,13 @@
                             <option value="2">Example</option>
                             <option value="3">Example</option>
                         </select>
-                        <div id="educationError" class="form-text"></div>
+                        <div id="educationError" class="form-text">Error message</div>
                     </div>
                     <!-- SCHOOL -->
                     <div class="form-input d-flex flex-column ">
                         <label for="school" class="form-label">School</label>
                         <input type="text" name="school" id="school" class="form-control" autocomplete="off">
-                        <div id="schoolError" class="form-text">The School is Wrong</div>
+                        <div id="schoolError" class="form-text">Error message</div>
                     </div>
                     <!-- GRADE -->
                     <div class="form-input d-flex flex-column">
@@ -110,7 +108,7 @@
                             <option value="2">Example</option>
                             <option value="3">Example</option>
                         </select>
-                        <div id="gradeError" class="form-text"></div>
+                        <div id="gradeError" class="form-text">Error message</div>
                     </div>
                     <!-- NEXT BUTTON -->
                     <div class="form-input d-flex justify-content-end">  
@@ -131,7 +129,7 @@
                             <option value="Mexico">
                             <option value="Spain">
                         </datalist>
-                        <div id="countryError" class="form-text"></div>
+                        <div id="countryError" class="form-text">Error message</div>
                     </div>
                     <!-- PROVINCE -->
                     <div class="form-input d-flex flex-column">
@@ -143,7 +141,7 @@
                             <option value="Mexico">
                             <option value="Spain">
                         </datalist>
-                        <div id="stateError" class="form-text"></div>
+                        <div id="stateError" class="form-text">Error message</div>
                     </div>
                     <!-- CITY -->
                     <div class="form-input d-flex flex-column">
@@ -155,7 +153,7 @@
                             <option value="Mexico">
                             <option value="Spain">
                         </datalist>
-                        <div id="stateError" class="form-text"></div>
+                        <div id="stateError" class="form-text">Error message</div>
                     </div>
                     <!-- NEXT BUTTON -->
                     <div class="form-input d-flex justify-content-end">  
