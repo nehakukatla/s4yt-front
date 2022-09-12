@@ -107,13 +107,8 @@ export class RegisterLocation extends Component {
 						onChange={this.props.handleChange("city_id")}
 						disabled={this.props.cityDisabled}
 					/>
-<<<<<<< HEAD
 					<datalist id="cities">
 					{this.props.cities.map((city) => (
-=======
-					<datalist id="city">
-						{this.props.cities.map((city) => (
->>>>>>> 2cb5c64155535c1685333a53cbd3464707a30999
 							<option value={city.name} key={city.id}></option>
 						))}
 					</datalist>

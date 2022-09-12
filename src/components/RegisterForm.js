@@ -239,6 +239,7 @@ export default class RegisterForm extends Component {
 						});
 						
 				}
+				/*
 				else if (country.name !== e.target.value){
 					document.getElementById("state_iso").value = ""
 					document.getElementById("city_id").value = ""
@@ -249,6 +250,7 @@ export default class RegisterForm extends Component {
 						state_spinner_hidden:false,
 					});
 				}
+				*/
 			});
 		}
 		
@@ -332,7 +334,7 @@ export default class RegisterForm extends Component {
 					<li
 						className={`step ${
 							this.state.step === 1 || this.state.base.next ? "active" : ""
-						} error`}
+						}`}
 						data-step-id="1"
 						onClick={this.toggleStep}
 					>
