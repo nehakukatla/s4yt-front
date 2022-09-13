@@ -5,417 +5,752 @@ import { RegisterLocation } from "./RegisterLocation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import axios from "./../config/axios";
-//import env from "react-dotenv";
 
 export default class RegisterForm extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			step: 1,
-			name: "",
-			email: "",
-			password: "",
-			password_confirmation: "",
-			education: "",
-			school: "",
-			grade: "",
-			country: "" /* country input */,
-			country_iso: "" /* country_iso hidden */,
-			state_iso: "",
-			city_id: "",
-			base: {
-				next: false,
-				error: false,
-				errors: {
-					name: "",
-					email: "",
-					password: "",
-					password_confirmation: "",
-				},
-			},
-			educationStep: {
-				next: false,
-				error: false,
-				errors: {
-					education: "",
-					school: "",
-					grade: "",
-				},
-				school_hidden: true,
-				education_api: false,
-				education: [],
-				grade_api: false,
-				grade: [],
-			},
-			location: {
-				error: false,
-				errors: {
-					country_iso: "",
-					state_iso: "",
-					city_id: "",
-				},
-				countries: [],
-				country_disabled: true,
-				country_spinner_hidden: false,
-				states: [],
-				state_disabled: true,
-				state_spinner_hidden: true,
-				cities: [],
-				city_disabled: true,
-				city_spinner_hidden: true,
-			},
-		};
-		this.toggleStep = this.toggleStep.bind(this);
-		this.handleChange = this.handleChange.bind(this);
-		this.nextStep = this.nextStep.bind(this);
-		this.submit = this.submit.bind(this);
-	}
+  constructor(props) {
+    super(props);
+    this.state = {
+      step: 1,
+      submitDisable: false,
+      registered: {
+        status: false,
+        primary: "",
+        secondary: "",
+      },
+      formData: {
+        name: "",
+        email: "",
+        password: "",
+        password_confirmation: "",
+        education: "",
+        school: "",
+        grade: "",
+        country: "",
+        country_iso: "",
+        state: "",
+        state_iso: "",
+        city: "",
+        city_id: "",
+      },
+      errors: {
+        errorsHidden: true,
+        registerBase: true,
+        registerEducation: true,
+        registerLocation: true,
+        name: "",
+        email: "",
+        password: "",
+        password_confirmation: "",
+        education: "",
+        school: "",
+        grade: "",
+        country: "",
+        state: "",
+        city: "",
+      },
+      registerBase: {
+        error: false,
+        next: false,
+      },
+      registerEducation: {
+        error: false,
+        next: false,
+        schoolHidden: true,
+        educationCollection: [],
+        educationDisabled: true,
+        educationSpinner: true,
+        gradeCollection: [],
+        gradeDisabled: true,
+        gradeSpinner: true,
+      },
+      registerLocation: {
+        error: false,
+        countryCollection: [],
+        countryDisabled: true,
+        countrySpinner: true,
+        stateCollection: [],
+        stateDisabled: true,
+        stateSpinner: false,
+        cityCollection: [],
+        cityDisabled: true,
+        citySpinner: false,
+      },
+    };
+    this.toggleStep = this.toggleStep.bind(this);
+    this.nextStep = this.nextStep.bind(this);
+    this.setEducationCollection = this.setEducationCollection.bind(this);
+    this.setGradeCollection = this.setGradeCollection.bind(this);
+    this.setCountryCollection = this.setCountryCollection.bind(this);
+    this.handleCountryChange = this.handleCountryChange.bind(this);
+    this.handleStateChange = this.handleStateChange.bind(this);
+    this.handleCityChange = this.handleCityChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
-	componentDidMount() {
-		axios.get("/educations").then((response) => {
-			if (!response.data.success) {
-				// Provide error message
-			}
-			this.setState((prevState) => {
-				return {
-					...prevState,
-					educationStep: {
-						...prevState.educationStep,
-						education: response.data.data.educations,
-						education_api: true,
-					},
-				};
-			});
-		});
+  /*
+   * Method set education endpoint API response in state.
+   */
+  setEducationCollection = (educationCollection) => {
+    this.setState((prevState) => {
+      return {
+        ...prevState,
+        registerEducation: {
+          ...prevState.registerEducation,
+          educationCollection: educationCollection,
+          educationDisabled: false,
+          educationSpinner: false,
+        },
+      };
+    });
+  };
 
-		axios.get("/grades").then((response) => {
-			if (!response.data.success) {
-				// Provide error message
-			}
+  /*
+   * Method set grades endpoint API response in state.
+   */
+  setGradeCollection = (gradeCollection) => {
+    this.setState((prevState) => {
+      return {
+        ...prevState,
+        registerEducation: {
+          ...prevState.registerEducation,
+          gradeCollection: gradeCollection,
+          gradeDisabled: false,
+          gradeSpinner: false,
+        },
+      };
+    });
+  };
 
-			this.setState((prevState) => {
-				return {
-					...prevState,
-					educationStep: {
-						...prevState.educationStep,
-						grade: response.data.data.grades,
-					},
-				};
-			});
-		});
+  /*
+   * Method set education endpoint API response in state.
+   */
+  setCountryCollection = (countryCollection) => {
+    this.setState((prevState) => {
+      return {
+        ...prevState,
+        registerLocation: {
+          ...prevState.registerLocation,
+          countryCollection: countryCollection,
+          countryDisabled: false,
+          countrySpinner: false,
+        },
+      };
+    });
+  };
 
-		axios.get("/location/countries").then((response) => {
-			if (!response.data.success) {
-				// Provide error message
-			}
+  /*
+   * Method handles changes from the step list element.
+   */
+  toggleStep = (e) => {
+    const stepId = parseInt(e.target.getAttribute("data-step-id"));
+    console.log(stepId);
+    if (!isNaN(stepId)) {
+      this.setState((prevState) => {
+        return {
+          ...prevState,
+          step: stepId,
+        };
+      });
+    }
+  };
 
-			this.setState((prevState) => {
-				return {
-					...prevState,
-					location: {
-						...prevState.location,
-						country_disabled: false,
-						country_spinner_hidden: true,
-						countries: response.data.data.countries,
-					},
-				};
-			});
-		});
-	}
+  /*
+   * Method handles changes from the next button.
+   */
+  nextStep = () => {
+    this.setState((prevState) => {
+      return {
+        ...prevState,
+        step: this.state.step + 1,
+        registerBase: {
+          ...prevState.registerBase,
+          next: this.state.step === 1 || this.state.registerBase.next,
+        },
+        registerEducation: {
+          ...prevState.registerEducation,
+          next: this.state.step === 2 && this.state.registerBase.next,
+        },
+      };
+    });
+  };
 
-	toggleStep = (e) => {
-		const stepId = e.target.getAttribute("data-step-id");
-		this.setState({
-			step: parseInt(stepId),
-		});
-	};
+  /*
+   * Method handles changes event in form inputs
+   */
+  handleChange = (input) => (e) => {
+    // update state formData value
+    this.setState((prevState) => {
+      return {
+        ...prevState,
+        formData: {
+          ...prevState.formData,
+          [input]: e.target.value,
+        },
+      };
+    });
 
-	// Handle fields change and validation
-	handleChange = (input) => (e) => {
-		this.setState({ [input]: e.target.value });
-		if (input === "education") {
-			this.setState((prevState) => {
-				return {
-					...prevState,
-					educationStep: {
-						...prevState.educationStep,
-						school_hidden: !(e.target.value === "1"),
-					},
-				};
-			});
-		}
+    // conditional education input
+    if (input === "education") {
+      this.setState((prevState) => {
+        return {
+          ...prevState,
+          registerEducation: {
+            ...prevState.registerEducation,
+            schoolHidden: !(e.target.value === "1"),
+          },
+        };
+      });
+    }
+  };
 
-		if (input === "country") {
-			console.log(this.state.country_iso);
-			document.getElementById('state_iso').value='';
-			this.state.location.countries.map((country) => {
-				
-				if (country.name === e.target.value) {
-					// update state
-					this.setState((prevState) => {
-						return {
-							...prevState,
-							country_iso: country.iso2,
-							location: {
-								...prevState.location,
-								state_spinner_hidden: false,
-							},
-						};
-					});
-					
-					axios
-						.get("/location/states", { params: { ciso: country.iso2 } })
-						.then((response) => {
-							if (!response.data.success) {
-								// Provide error message
-							}
+  /*
+   * Method handles changes event in country input
+   */
+  handleCountryChange = (e) => {
+    let countryIso = null;
+    let flag = false;
 
-							this.setState((prevState) => {
-								return {
-									...prevState,
-									location: {
-										...prevState.location,
-										state_disabled: false, 
-										state_spinner_hidden: true,
-										states: response.data.data.states,
-									},
-								};
-							});
-						});
-					}
-					else if (country.name !== e.target.value){
-						this.setState((prevState) => {
-							document.getElementById("state_iso").value = ""
-							document.getElementById("city_id").value = ""
-							return {
-								...prevState,
-								location: {
-									...prevState.location,
-									state_disabled: true,
-									city_disabled: true
-								},
-							};
-						});
-					}
-				})
-			}
-			if (input === "state") {
-				this.state.location.states.map((state) => {
-					if (state.name === e.target.value) {
-						// update state
-						this.setState((prevState) => {
-							return {
-								...prevState,
-								state_iso: state.iso2,
-								location: {
-									...prevState.location,
-									city_spinner_hidden: false,
-								},
-							};
-						});
-						axios
-							.get("/location/cities", {
-								 params: {
-									 ciso: this.state.country_iso, 
-									 siso: state.iso2 
-									}
-								})
-							.then((response) => {
-								if (!response.data.success) {
-									// Provide error message
-								}
+    this.state.registerLocation.countryCollection.map((country) => {
+      if (country.name === e.target.value) {
+        flag = true;
+        countryIso = country.iso2;
+      }
+    });
 
-								this.setState((prevState) => {
-									return {
-										...prevState,
-										location: {
-										...prevState.location,
-										city_disabled: false,
-										city_spinner_hidden: true,
-										cities: response.data.data.cities,										
-									},
-								};
-							});
-						});
-						
-				}
-				/*
-				else if (country.name !== e.target.value){
-					document.getElementById("state_iso").value = ""
-					document.getElementById("city_id").value = ""
-					this.setState({
-						city_disabled: true,
-						city_spinner_hidden:false,
-						state_disabled:false,
-						state_spinner_hidden:false,
-					});
-				}
-				*/
-			});
-		}
-		
+    // update state
+    this.setState((prevState) => {
+      return {
+        ...prevState,
+        formData: {
+          ...prevState.formData,
+          country: e.target.value,
+          country_iso: flag ? countryIso : "",
+          state: !flag ? "" : this.state.formData.state,
+          state_iso: !flag ? "" : this.state.formData.state_iso,
+          city: !flag ? "" : this.state.formData.city,
+        },
+        registerLocation: {
+          ...prevState.registerLocation,
+          stateSpinner: flag,
+          stateDisabled: !flag,
+          cityDisabled: true,
+        },
+      };
+    });
 
-		if (input === "state_iso") {
-			//console.log(this.state.country_iso);
-			//document.getElementById('state_iso').value='';
-			this.state.location.states.map((state) => {
-				
-				if (state.name === e.target.value) {
-					// update state
-					this.setState((prevState) => {
-						return {
-							...prevState,
-							state_iso: state.iso2,
-							location: {
-								...prevState.location,
-								city_spinner_hidden: false,
-							},
-						};
-					});
-					
-					axios
-						.get("/location/cities", { params: { ciso: this.state.country_iso, siso: state.iso2}, })
-						.then((response) => {
-							if (!response.data.success) {
-								// Provide error message
-							}
-							console.log(response.data.data.cities);
-							this.setState((prevState) => {
-								return {
-									...prevState,
-									location: {
-										...prevState.location,
-										city_disabled: false,
-										city_spinner_hidden: true,
-										cities: response.data.data.cities,
-									},
-								};
-							});
-						});
-				}
-				else if (state.name !== e.target.value){
-					document.getElementById("city_id").value = ""
-					this.state.location.city_disabled = true
-				}
-			})
-	};
-}
+    if (flag) {
+      // API states endpoint
+      axios
+        .get("/location/states", { params: { ciso: countryIso } })
+        .then((response) => {
+          if (response.data.success) {
+            // update state
+            this.setState((prevState) => {
+              return {
+                ...prevState,
+                registerLocation: {
+                  ...prevState.registerLocation,
+                  stateSpinner: false,
+                  stateDisabled: false,
+                  stateCollection: response.data.data.states,
+                },
+              };
+            });
+          }
+        });
+    }
+  };
 
-	nextStep = () => {
-		const { step } = this.state;
-		console.log(step === 1);
-		this.setState((prevState) => {
-			return {
-				...prevState,
-				step: step + 1,
-				base: {
-					...prevState.base,
-					next: step === 1 || this.state.base.next,
-				},
-				educationStep: {
-					...prevState.educationStep,
-					next: step === 2 && this.state.base.next,
-				},
-			};
-		});
-	};
+  /*
+   * Method handles changes event in state input
+   */
+  handleStateChange = (e) => {
+    let stateIso = null;
+    let flag = false;
+    this.state.registerLocation.stateCollection.map((state) => {
+      if (state.name === e.target.value) {
+        flag = true;
+        stateIso = state.iso2;
+      }
+    });
 
-	submit = () => {
-		// TODO: validate form
-		let validate = true;
-		if (validate) {
-		}
-	};
+    // update state
+    this.setState((prevState) => {
+      return {
+        ...prevState,
+        formData: {
+          ...prevState.formData,
+          state: e.target.value,
+          state_iso: flag ? stateIso : "",
+          city: !flag ? "" : this.state.formData.city,
+        },
+        registerLocation: {
+          ...prevState.registerLocation,
+          citySpinner: flag,
+          cityDisabled: !flag,
+        },
+      };
+    });
 
-	render() {
-		return (
-			<section className="row form-section">
-				<ul className="steps">
-					<li
-						className={`step ${
-							this.state.step === 1 || this.state.base.next ? "active" : ""
-						}`}
-						data-step-id="1"
-						onClick={this.toggleStep}
-					>
-						<FontAwesomeIcon
-							icon={faXmark}
-							className={`icon-error ${this.state.base.error ? "" : "hidden"}`}
-						/>
-					</li>
-					<li
-						className={`step-line ${this.state.base.next ? "active" : ""}`}
-					></li>
-					<li
-						className={`step ${
-							this.state.step === 2 || this.state.base.next ? "active" : ""
-						}`}
-						data-step-id="2"
-						onClick={this.toggleStep}
-					>
-						<FontAwesomeIcon
-							icon={faXmark}
-							className={`icon-error ${
-								this.state.education.error ? "" : "hidden"
-							}`}
-						/>
-					</li>
-					<li
-						className={`step-line ${
-							this.state.educationStep.next ? "active" : ""
-						}`}
-					></li>
-					<li
-						className={`step ${
-							this.state.step === 3 || this.state.educationStep.next
-								? "active"
-								: ""
-						}`}
-						data-step-id="3"
-						onClick={this.toggleStep}
-					>
-						<FontAwesomeIcon
-							icon={faXmark}
-							className={`icon-error ${
-								this.state.location.error ? "" : "hidden"
-							}`}
-						/>
-					</li>
-				</ul>
-				<form className="register-form" method="POST">
-					<div className="col-10 offset-1 my-5 form-wrapper row test">
-						<RegisterBase
-							step={this.state.step}
-							nextStep={this.nextStep}
-							handleChange={this.handleChange}
-						/>
-						<RegisterEducation
-							step={this.state.step}
-							nextStep={this.nextStep}
-							handleChange={this.handleChange}
-							education_api={this.state.educationStep.education_api}
-							education={this.state.educationStep.education}
-							grade={this.state.educationStep.grade}
-							school_hidden={this.state.educationStep.school_hidden}
-						/>
-						<RegisterLocation
-							step={this.state.step}
-							nextStep={this.nextStep}
-							handleChange={this.handleChange}
-							submit={this.submit}
-							countryDisabled={this.state.location.country_disabled}
-							countrySpinner={this.state.location.country_spinner_hidden}
-							countries={this.state.location.countries}
-							stateDisabled={this.state.location.state_disabled}
-							stateSpinner={this.state.location.state_spinner_hidden}
-							states={this.state.location.states}
-							cityDisabled={this.state.location.city_disabled}
-							citySpinner={this.state.location.city_spinner_hidden}
-							cities={this.state.location.cities}
-						/>
-					</div>
-				</form>
-			</section>
-		);
-	}
+    if (flag) {
+      // API states endpoint
+      axios
+        .get("/location/cities", {
+          params: { ciso: this.state.formData.country_iso, siso: stateIso },
+        })
+        .then((response) => {
+          if (response.data.success) {
+            // update state
+            this.setState((prevState) => {
+              return {
+                ...prevState,
+                registerLocation: {
+                  ...prevState.registerLocation,
+                  citySpinner: false,
+                  cityDisabled: false,
+                  cityCollection: response.data.data.cities,
+                },
+              };
+            });
+          }
+        });
+    }
+  };
+
+  /*
+   * Method handles changes event in city input
+   */
+  handleCityChange = (e) => {
+    let cityId = null;
+    let flag = false;
+    this.state.registerLocation.cityCollection.map((city) => {
+      if (city.name === e.target.value) {
+        cityId = city.id;
+        flag = true;
+      }
+    });
+
+    this.setState((prevState) => {
+      return {
+        ...prevState,
+        formData: {
+          ...prevState.formData,
+          city: e.target.value,
+          city_id: flag ? cityId : "",
+        },
+      };
+    });
+  };
+
+  /*
+   * Method handles register
+   */
+  handleSubmit = () => {
+    // disable to avoid double input
+    this.setState((prevState) => {
+      return {
+        ...prevState,
+        submitDisable: true,
+      };
+    });
+
+    // validate form data
+    let validForm = this.validate(this.state.formData);
+
+    if (!validForm.valid) {
+      this.setState((prevState) => {
+        return {
+          ...prevState,
+          submitDisable: false,
+          errors: {
+            ...prevState.errors,
+            registerBase: validForm.registerBase,
+            registerEducation: validForm.registerEducation,
+            registerLocation: validForm.registerLocation,
+            errorsHidden: false,
+          },
+        };
+      });
+    } else {
+      // API register endpoint
+      axios
+        .post("/register", {
+          name: this.state.formData.name,
+            email: this.state.formData.email,
+            password: this.state.formData.password,
+            password_confirmation: this.state.formData.password_confirmation,
+            education_id: parseInt(this.state.formData.education),
+            institution: this.state.formData.school,
+            grade_id: parseInt(this.state.formData.grade),
+            country_iso: this.state.formData.country_iso,
+            state_iso: this.state.formData.state_iso,
+            city_id: parseInt(this.state.formData.city_id),
+        })
+        .then((response) => {
+          this.setState((prevState) => {
+            return {
+              ...prevState,
+              registered: {
+                primary: response.data.success
+                  ? "You did it! You're in!"
+                  : "Whoops! There was an error",
+                secondary: response.data.success
+                  ? "Now just look for your $4YT to verify your email and join the $4YT Discord for next steps and updates!"
+                  : "Please reach out in our Discord to fix it",
+                status: true,
+              },
+            };
+          });
+        });
+    }
+  };
+
+  /*
+   * Method validates form data before submit
+   */
+  validate = (formData) => {
+    let validate = {
+      valid: true,
+      registerBase: true,
+      registerEducation: true,
+      registerLocation: true,
+    };
+    // name validation
+    if (
+      formData.name.length == 0 ||
+      formData.name == "" ||
+      formData.name == null
+    ) {
+      validate.valid = false;
+      validate.registerBase = false;
+      this.setState((prevState) => {
+        return {
+          ...prevState,
+          errors: {
+            ...prevState.errors,
+            name: "Tell us your name",
+          },
+        };
+      });
+    }
+
+    if (formData.name.length < 3) {
+      validate.valid = false;
+      validate.registerBase = false;
+      this.setState((prevState) => {
+        return {
+          ...prevState,
+          errors: {
+            ...prevState.errors,
+            name: "This does not look like a real name",
+          },
+        };
+      });
+    }
+
+    // email validation
+    if (
+      formData.email.length == 0 ||
+      formData.email == "" ||
+      formData.email == null
+    ) {
+      validate.valid = false;
+      validate.registerBase = false;
+      this.setState((prevState) => {
+        return {
+          ...prevState,
+          errors: {
+            ...prevState.errors,
+            email: "Tell us your email",
+          },
+        };
+      });
+    } else {
+      let emailRegex = new RegExp(
+        /^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/,
+        "gm"
+      );
+      if (!emailRegex.test(formData.email)) {
+        validate.valid = false;
+        validate.registerBase = false;
+        this.setState((prevState) => {
+          return {
+            ...prevState,
+            errors: {
+              ...prevState.errors,
+              email: "This is not a valid email",
+            },
+          };
+        });
+      }
+    }
+
+    // password validation
+    if (
+      formData.password.length == 0 ||
+      formData.password == "" ||
+      formData.password == null
+    ) {
+      validate.valid = false;
+      validate.registerBase = false;
+      this.setState((prevState) => {
+        return {
+          ...prevState,
+          errors: {
+            ...prevState.errors,
+            password: "Set your password",
+          },
+        };
+      });
+    }
+
+    if (
+      formData.password.length < 8 ) {
+      validate.valid = false;
+      validate.registerBase = false;
+      this.setState((prevState) => {
+        return {
+          ...prevState,
+          errors: {
+            ...prevState.errors,
+            password: "Your password needs minimum 8 characters",
+          },
+        };
+      });
+    }
+
+    // password_confirmation validation
+    if (
+      formData.password_confirmation.length == 0 ||
+      formData.password_confirmation == "" ||
+      formData.password_confirmation == null
+    ) {
+      validate.valid = false;
+      validate.registerBase = false;
+      this.setState((prevState) => {
+        return {
+          ...prevState,
+          errors: {
+            ...prevState.errors,
+            password_confirmation: "Re-enter your password",
+          },
+        };
+      });
+    } else {
+      if (formData.password !== formData.password_confirmation) {
+        validate.valid = false;
+        validate.registerBase = false;
+        this.setState((prevState) => {
+          return {
+            ...prevState,
+            errors: {
+              ...prevState.errors,
+              password_confirmation: "Passwords do not match",
+            },
+          };
+        });
+      }
+    }
+
+    // education validation
+    if (formData.education == "0" || formData.education == "") {
+      validate.valid = false;
+      validate.registerEducation = false;
+      this.setState((prevState) => {
+        return {
+          ...prevState,
+          errors: {
+            ...prevState.errors,
+            education: "Select an education",
+          },
+        };
+      });
+    } else {
+      // school validation
+      if (
+        formData.education == "1" &&
+        (formData.school.length == 0 ||
+          formData.school == "" ||
+          formData.school == null)
+      ) {
+        validate.valid = false;
+        validate.registerEducation = false;
+        this.setState((prevState) => {
+          return {
+            ...prevState,
+            errors: {
+              ...prevState.errors,
+              school: "Enter your school",
+            },
+          };
+        });
+      }
+    }
+
+    // grade validation
+    if (formData.grade == "0" || formData.grade == "") {
+      validate.valid = false;
+      validate.registerEducation = false;
+      this.setState((prevState) => {
+        return {
+          ...prevState,
+          errors: {
+            ...prevState.errors,
+            grade: "Select your grade",
+          },
+        };
+      });
+    }
+
+    // country validation
+    if (formData.country_iso == "") {
+      validate.valid = false;
+      validate.registerLocation = false;
+      this.setState((prevState) => {
+        return {
+          ...prevState,
+          errors: {
+            ...prevState.errors,
+            country: "Enter a valid country",
+          },
+        };
+      });
+    }
+
+    // state validation
+    if (formData.state_iso == "") {
+      validate.valid = false;
+      validate.registerLocation = false;
+      this.setState((prevState) => {
+        return {
+          ...prevState,
+          errors: {
+            ...prevState.errors,
+            state: "Enter a valid state",
+          },
+        };
+      });
+    }
+
+    // city validation
+    if (formData.city_id == "") {
+      validate.valid = false;
+      validate.registerLocation = false;
+      this.setState((prevState) => {
+        return {
+          ...prevState,
+          errors: {
+            ...prevState.errors,
+            city: "Enter a valid city",
+          },
+        };
+      });
+    }
+    return validate;
+  };
+
+  render() {
+    return (
+      <section className="row form-section">
+        {/* step list element */}
+        <ul className="steps">
+          <li
+            className={`step ${
+              this.state.step === 1 || this.state.registerBase.next
+                ? "active"
+                : ""
+            }`}
+            data-step-id="1"
+            onClick={this.toggleStep}
+          >
+            <FontAwesomeIcon
+              icon={faXmark}
+              className={`error-icon ${
+                this.state.errors.registerBase ? "hidden" : ""
+              }`}
+              data-step-id="1"
+            />
+          </li>
+          <li
+            className={`step-line ${
+              this.state.registerBase.next ? "active" : ""
+            }`}
+          ></li>
+          <li
+            className={`step ${
+              this.state.step === 2 || this.state.registerBase.next
+                ? "active"
+                : ""
+            }`}
+            data-step-id="2"
+            onClick={this.toggleStep}
+          >
+            <FontAwesomeIcon
+              icon={faXmark}
+              className={`error-icon ${
+                this.state.errors.registerEducation ? "hidden" : ""
+              }`}
+              data-step-id="2"
+            />
+          </li>
+          <li
+            className={`step-line ${
+              this.state.registerBase.next ? "active" : ""
+            }`}
+          ></li>
+          <li
+            className={`step ${
+              this.state.step === 3 || this.state.registerEducation.next
+                ? "active"
+                : ""
+            }`}
+            data-step-id="3"
+            onClick={this.toggleStep}
+          >
+            <FontAwesomeIcon
+              icon={faXmark}
+              className={`error-icon ${
+                this.state.errors.registerLocation ? "hidden" : ""
+              }`}
+              data-step-id="3"
+            />
+          </li>
+        </ul>
+        <form className="register-form" method="POST">
+          <div className="col-10 offset-1 my-5 form-wrapper row test">
+            <RegisterBase
+              step={this.state.step}
+              errors={this.state.errors}
+              setEducationCollection={this.setEducationCollection}
+              setGradeCollection={this.setGradeCollection}
+              handleChange={this.handleChange}
+              nextStep={this.nextStep}
+            />
+            <RegisterEducation
+              step={this.state.step}
+              errors={this.state.errors}
+              registerEducation={this.state.registerEducation}
+              setCountryCollection={this.setCountryCollection}
+              handleChange={this.handleChange}
+              nextStep={this.nextStep}
+            />
+            <RegisterLocation
+              step={this.state.step}
+              errors={this.state.errors}
+              registerLocation={this.state.registerLocation}
+              state={this.state.formData.state}
+              city={this.state.formData.city}
+              registered={this.state.registered}
+              handleChange={this.handleChange}
+              handleCountryChange={this.handleCountryChange}
+              handleStateChange={this.handleStateChange}
+              handleCityChange={this.handleCityChange}
+              handleSubmit={this.handleSubmit}
+              submitDisable={this.state.submitDisable}
+            />
+          </div>
+        </form>
+      </section>
+    );
+  }
 }

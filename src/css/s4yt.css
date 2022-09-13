@@ -16,7 +16,7 @@
     --error-font: #1eb8a9;
 }
 
-.title {
+.title, .message {
     font-family:'NightZone', Arial, sans-serif;
     color: var(--primary-font);
     font-weight: bold;
@@ -70,7 +70,7 @@ header {
     padding: 2vh 0;
 }
 
-input[type="text"], input[type="password"]
+.form-control
 {
     font-size:1rem;
     box-sizing: border-box;
@@ -88,30 +88,21 @@ input[type="text"], input[type="password"]
     border-width: 1px;
 }
 
-select {    
-    box-shadow: 0 0 0 .1rem var(--primary-font);
-    -moz-box-shadow: 0 0 0 .1rem var(--primary-font);
-    -webkit-box-shadow: 0 0 0 .1rem var(--primary-font);
-    border-color: var(--primary-font);
-    border-width: 2px;
-    outline: none;
-    display: inline-block;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    cursor: pointer;
-}
-
-select:focus {
-    box-shadow: 0 0 0 .1rem var(--primary-font);
-    -moz-box-shadow: 0 0 0 .1rem var(--primary-font);
-    -webkit-box-shadow: 0 0 0 .1rem var(--primary-font);
-    border-color: var(--primary-font);
-    border-width: 1px;
-}
-
 .form-input {
     margin-bottom: 5%;
+}
+
+.form-control.error {
+    border-color: var(--error-font) !important;
+    border-width: 2px;
+}
+
+.form-control:focus.error {
+    box-shadow: 0 0 0 .15rem var(--error-font);
+    -moz-box-shadow: 0 0 0 .15rem var(--error-font);
+    -webkit-box-shadow: 0 0 0 .15rem var(--error-font);
+    border-color: var(--error-font);
+    border-width: 1px;
 }
 
 .icon {
@@ -122,7 +113,12 @@ select:focus {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
+}
+
+.error-icon {
+    color: var(--error-font);
+    margin-left: 25%;
 }
 
 @media only screen  and (orientation: landscape){
