@@ -1,0 +1,26 @@
+header {
+    margin: 10% 0 5% 0;
+}
+
+.message-section {
+    background-repeat: no-repeat;
+    background-image: url('./../assets/img/mobile_form.png');
+    background-position: center center;
+    background-size: 80% 100%;
+    margin-bottom: 10%;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.message-section h2, .message-section p {
+    font-family:'NightZone', Arial, sans-serif;
+    color: var(--primary-font);
+    font-weight: bold;
+    text-align: center;
+}
+
+.message-section p {
+    margin-top: 5%;
+}

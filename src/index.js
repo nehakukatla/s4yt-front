@@ -2,9 +2,9 @@ import * as React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import App from "./App";
-// import EmailVerification from "./EmailVerification";
-// import EmailVerify from "./components/EmailVerify";
+import Message from "./Message";
 import Register from "./Register";
+import VerifySend from "./VerifySend";
 import "bootstrap/dist/css/bootstrap.css";
 import "./css/reset.css";
 import "./css/s4yt.css";
@@ -15,8 +15,27 @@ root.render(
     <Routes>
       {/* <Route path="/" element={<App />} /> */}
       <Route path="register" element={<Register />} />
-      {/* <Route exact path="/email-verify" element={<EmailVerification />} />
-      <Route exact path="/email-verify/:id" element={<EmailVerify />} /> */}
+      <Route
+        path="email-verify"
+        element={
+          <Message
+            title="Email Verify"
+            primary="Thanks!"
+            secondary="Your email has been verified, please check your inbox."
+          />
+        }
+      />
+      <Route
+        path="email-verified"
+        element={
+          <Message
+            title="Email Verified"
+            primary="Thanks again!"
+            secondary="Your email has already been verified. You are ready to play."
+          />
+        }
+      />
+      <Route path="verify-resend" element={<VerifySend />} />
     </Routes>
   </BrowserRouter>
 );
