@@ -1,70 +1,35 @@
-# Getting Started with Create React App
+# S4YT
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The s4yt is an event for high school students. The game is available, for game purposes, for 48 hours and after that players can win prize money and/or raffle items. The evtn has some important timestamps:
 
-## Available Scripts
+1. Register available
+2. Profile page available
+3. Game start
+4. Game end
+5. Winners informed
 
-In the project directory, you can run:
+In detail the event is built around two main axis: game and raffle.
 
-### `npm start`
+## The game
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Businesses, for building-u nomenclature event partners, provide questions (one question each) and players answer them. Event partners are assigned an amount of money, provided by building-u, and is their prerogative to create as many awards as they see fit and assign an amount of money (prize) to each. Businesses should be able to set these values through the admin panel before, during and after the game. During the game the businesses do not have much to do but when the game is finished they should have access to the answers of their question. The objective is for them to read the answers (max 1 per player) and assign players awards.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## The raffle
 
-### `npm test`
+Sponsors, for building-u nomenclature raffle partners, provide items. During the game, players can assign any number of coins to the item(s) of their preference. This are rewarded by randomization. For registering and being part of the game they have a base number of coins to spend but they can earn more through social media interaction and they can keep track of their total amount in the profile page. Items can have stock bigger than one and that means multiple randomization and winners for that item. In order to make things more fair...If someone already won an item in the previous draft, and they win again, another randomization will be triggered in order to ensure the max number of different players win items. If that still is not possible, due to number of players or bidders in that item, the previous rule will not be considered.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## S4YT-FRONT
 
-### `npm run build`
+This is the frontend application of the game and is developed in React. We follow the main gitflow organization paradigm: three branches for production, staging and develop environment. Production is related to what is actually accesible in the web. Staging referers to a test environment designed for internal testing and showcase potential partners as example. On the same hierarchy as the project there is a mockups folder where we have the pure HTML/CSS version of the pages.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+For local setup please execute the following steps:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Clone the repository
+3. Install Node dependecnies (```npm i```)
+4. Copy .env.example into .env (```cp .env.example .env```)
+5. Set testing API base URL in .env file
+6. Run application (```npm start```)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Archive
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This game has an archive version (last year version) available [here](https://s4yt-archive.building-u.com). For frontend purposes please use this account (email: bosco.eli@example.org; password: qwerty123); backend, use this account (email: nmachuca@protonmail.com; password: qwerty123). This version is a minimal approach data wise that we can edit if needed. The difference in the accounts is the fact is that players do not have access to the admin panel meanwhile admins do. Please, the admin panel access is intended for reference purposes. We can recreate it if needed but please be extra careful with the *configurations* module ( **DO NOT CHANGE** records here)
