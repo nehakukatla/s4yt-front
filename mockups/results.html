@@ -61,37 +61,58 @@
     </style>
 </head>
 <body>
-
-     <header>
-            <!--COUNTER-->
-            <div>
-                <img src="assets/coins.png" alt="coins img">
-                <p>You got <span>24</span> doblons</p>
+    <div class="container">
+        <div class="d-flex mt-3">
+          <!-- HEADER -->
+          <header class="col-10 row">
+            <!-- LOGO -->
+            <div class="col-4 logo hidden">
+                <img src="./assets/logo.png" alt="Logo S4YT">
             </div>
-            <div>
-                <img src = "assets/logo.png" alt="logo img">
-                <h1>Event Results</h1>
+            <!-- COUNTER -->
+            <div class="">
+              <div class="d-flex justify-content-start align-items-center col-4 logo">
+                <img src="assets/coins.png" alt="doublon counter" class="col-6">
+                <div class="doublon-counter-text text-center">
+                  <p>You got</p>
+                  <p class="doublon-counter-span">24</p>
+                  <p>doblons</p>
+                </div>
+              </div>
             </div>
-    </header>
-    <nav>
-        <ul>
-            <li>
-                <a href="#">
-                    <img src="assets/btn_mainmap_normal.png" alt= "main map">
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <img src="assets/btn_busi_normal.png" alt= "business map">
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <img src="assets/btn_logout_normal.png" alt="log out">
-                </a>
-            </li>
-        </ul>
-    </nav>
+            <div class="col-6">
+                <h1 class="title">Event Results</h1>
+            </div>
+          </header>
+          <!-- NAVBAR -->
+          <nav class="navbar navbar-expand-lg navbar-light bg-light col-2">
+            <div class="container-fluid">      
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">
+                      <img src="assets/btn_mainmap_normal.png" alt="main map">
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">
+                      <img src="assets/btn_busi_normal.png" alt="business map">
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">
+                      <img src="assets/btn_logout_normal.png" alt="logout">
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
     <!--MAIN SECTION-->
     <section class="main-section">
         <article>
@@ -109,19 +130,19 @@
            <ul>
             <li>
                 <div>
-                    <img src="" alt="">
+                    <img src="assets/high_road.png" alt="highroad-img">
                     <div>
-                        <p></p>
-                        <p></p>
+                        <p>KEILAH MAKOSI, GR.12,</p>
+                        <p>KIAMBU/KENYA</p>
                     </div>
                 </div>
             </li>
             <li>
                 <div>
-                    <img src="" alt="">
+                    <img src="assets/Everyone.png" alt="everyone-img">
                     <div>
-                        <p></p>
-                        <p></p>
+                        <p>ABRIL CASTILLO CAMACH, GR. 12,</p>
+                        <p>BCN/SPAIN</p>
                     </div>
                 </div>
             </li>
@@ -169,19 +190,29 @@
                 </a>
             </li>
         </ul>
+        <button><img src="assets/next.png" alt="next arrow"></button>
     </section>
     <nav>
         
     </nav>
-    <img src="assets/next.png" alt="next arrow">
+    
     <!--BOTTOM SECTION I -->
     <section>
         <div>
-            <!--COUNTER-->
-            <div>
-                <img src="assets/coins.png" alt="coins img">
-                <p>You got <span>24</span> doblons</p>
-            </div>
+            <!-- COUNTER -->
+            <div class="">
+                <div class="d-flex justify-content-start align-items-center col-4 logo">
+                  <img src="assets/coins.png" alt="doublon counter" class="col-6">
+                  <div class="doublon-counter-text text-center">
+                    <p>You got</p>
+                    <p class="doublon-counter-span">24</p>
+                    <p>doblons</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                  <h1 class="title">Event Results</h1>
+              </div>
             <!--BUTTON LIST-->
             <div>
                 <ul>
@@ -208,46 +239,69 @@
     <section>
         <ul>
             <li>
-                <a href="#">
+                <button>
                     <img src="assets/img_01_Press53.png" alt="sponsor image 1">
-                </a>
+                </button>
             </li>
             <li>
-                <a href="#">
+                <button>
                     <img src="assets/img_02_trot.png" alt="sponsor image 2">
-                </a>
+                </button>
             </li>
             <li>
-                <a href="#">
+                <button>
                     <img src="assets/img_04-Dazn.png" alt="sponsor image 3">
-                </a>
+                </button>
             </li>
             <li>
-                <a href="#">
+                <button>
                     <img src="assets/img_06-MPC.png" alt="sponsor image 4">
-                </a>
+                </button>
             </li>
             <li>
-                <a href="#">
+                <button>
                     <img src="assets/img_05-Tendermint.png" alt="sponsor image 5">
-                </a>
+                </button>
             </li>
             <li>
-                <a href="#">
+                <button>
                     <img src="assets/img_03-CryptoChicks.png" alt="sponsor image 6">
-                </a>
+                </button>
             </li>
             <li>
-                <a href="#">
+                <button>
                     <img src="assets/img_07-Beyond.png" alt="sponsor image 7">
-                </a>
+                </button>
             </li>
             <li>
-                <a href="#">
+                <button>
                     <img src="assets/img_08-others.png" alt="sponsor image 8">
-                </a>
+                </button>
             </li>
         </ul>
     </section>
+    <footer class="mt-auto col-12 text-white">
+        <div class="row col-12 d-flex justify-content-start align-items-center">
+          <div class="fs-1 col-5 fw-bold pb-2">
+            <p class="footer-text">Powered by</p>
+          </div>
+          <div class="col-7 flex justify-content-start align-items-center">
+            <ul role="list" class="col-12 mt-2 d-flex justify-content-start align-items-center">
+              <li class="me-2">
+                <!-- CIRCLE LOGO -->
+                <div class="footer-logo">
+                  <p>LOGO</p>
+                </div>
+              </li>
+              <li class="me-2">
+                <!-- CIRCLE LOGO -->
+                <div class="footer-logo">
+                  <p>LOGO</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </footer>
 </body>
 </html>
